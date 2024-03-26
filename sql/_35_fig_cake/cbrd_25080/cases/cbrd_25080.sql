@@ -2,8 +2,7 @@
 -- Ensure that the cardinality of a subquery from having a LIMIT clause
 -- to outputting the value of the LIMIT clause. Also, when a LIMIT clause
 -- exists, it follows a more rule-based optimization formula.
--- Lastly, ensure SSCAN_DEFULT_CARD is changed from 1000 to 100, which prevents
--- sscan from getting 
+-- Lastly, ensure SSCAN_DEFULT_CARD is changed from 1000 to 100 (sscan limit)
 
 -- Set the cardinality of the subquery having LIMIT clause to value of LIMIT clause.
 DROP TABLE IF EXISTS t111;
@@ -37,7 +36,7 @@ FROM (
     WHERE col1 IS NOT NULL
     LIMIT 6000
 ) a
-WHERE a.col3 = 1;
+WHERE a.col2 = 1;
 /*
     Join graph nodes:
     node[0]: a(6000/30) (sargs 0) (loc 0)
@@ -51,7 +50,7 @@ FROM (
     WHERE col1 IS NOT NULL
     LIMIT 120 OFFSET 10000
 ) a
-WHERE a.col3 = 1;
+WHERE a.col2 = 1;
 /*
     Join graph nodes:
     node[0]: a(120/1) (sargs 0) (loc 0)
