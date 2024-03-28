@@ -22,6 +22,10 @@ SELECT rownum, 1, MOD(rownum,10), LPAD(TO_CHAR(MOD(rownum,100)),20,'0'), MOD(row
 FROM db_class a, db_class b, db_class c, db_class d, db_class f, db_class g 
 LIMIT 100000;
 
+UPDATE STATISTICS ON t111;
+
+SET TRACE ON;
+
 CREATE INDEX idx1 ON t111(col1,col3); 
 CREATE INDEX idx3 ON t111(col3); 
 
@@ -37,12 +41,9 @@ FROM (
     LIMIT 6000
 ) a
 WHERE a.col2 = 1;
-/*
-    Join graph nodes:
-    node[0]: a(6000/30) (sargs 0) (loc 0)
-*/
+SHOW TRACE;
 
--- check card of node. 120
+-- Check card of node. 120
 SELECT /*+ recompile */ COUNT(*) 
 FROM (
     SELECT /*+ no_merge */ *
@@ -51,10 +52,8 @@ FROM (
     LIMIT 120 OFFSET 10000
 ) a
 WHERE a.col2 = 1;
-/*
-    Join graph nodes:
-    node[0]: a(120/1) (sargs 0) (loc 0)
-*/
+SHOW TRACE;
+
 --If there is a LIMIT clause, it optimizes more rule-based.
 --  If LIMIT exists, proceed with order by skip plan
 --  otherwise, should proceed with index scan
@@ -63,47 +62,24 @@ FROM t111
 WHERE col3 = '11' AND col1 IS NOT NULL
 ORDER BY col1
 LIMIT 10;
-/*
-Query plan:
-    iscan
-        class: t111 node[0]
-        index: idx1
-        filtr: term[0] AND term[1]
-        sort:  1 asc
-        cost:  513 card 9900
-    */
+--SHOW TRACE;
 
 -- no limit, index scan
 SELECT /*+ recompile */ * 
 FROM t111
 WHERE col3 = '11' AND col1 IS NOT NULL
 ORDER BY col1;
-/*
-    Query plan:
-    temp(order by)
-        subplan: iscan
-                    class: t111 node[0]
-                    index: idx3 term[0]
-                    sargs: term[1]
-                    cost:  137 card 9900
-        sort:  1 asc
-        cost:  217 card 9900
-*/
+--SHOW TRACE;
 
--- return number of rows
+-- Return number of rows
 SELECT /*+ recompile */ COUNT(*) 
 FROM t111
 WHERE col3 = '11' AND col1 IS NOT NULL
 ORDER BY col1
 LIMIT 10;
-/*
-    Query plan:
-    iscan
-        class: t111 node[0]
-        index: idx3 term[0]
-        sargs: term[1]
-        cost:  137 card 9900
-*/
+--SHOW TRACE;
 
-#Cleanup
+SET TRACE OFF;
+
+-- Cleanup
 DROP TABLE t111;
