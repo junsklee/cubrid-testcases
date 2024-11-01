@@ -401,3 +401,5 @@ SELECT * FROM v22_2;
 DROP TABLE IF EXISTS tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10, tbl11, tbl12, tbl13, tbl14, tbl15, tbl16, tbl17, tbl18, tbl19, tbl20, tbl21, tbl22;
 DROP VIEW IF EXISTS v1_1, v1_2, v2_1, v2_2, v3_1, v3_2, v4_1, v4_2, v5_1, v5_2, v6_1, v6_2, v7_1, v7_2, v8_1, v8_2, v9_1, v9_2, v10_1, v10_2, v11_1, v11_2, v12_1, v12_2, v13_1, v13_2, v14_1, v14_2, v15_1, v15_2, v16_1, v16_2, v17_1, v17_2, v18_1, v18_2, v19_1, v19_2, v20_1, v20_2, v21_1, v21_2, v22_1, v22_2;
 
+--+ server-message off
+
