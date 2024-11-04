@@ -1,0 +1,766 @@
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+4
+===================================================
+4
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  1. left outer join (ansi) ####     
+
+===================================================
+a_ca    b_ca    c_ca    d_ca    
+1     1     1     1     
+2     null     null     null     
+3     3     null     null     
+4     4     4     null     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0]
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 5) (loc 0)
+node[1]: dba.tb b(6/1) (sargs 6) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(6/1) (sargs 4) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(6/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
+term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
+term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
+Join graph terms:
+term[3]: d.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 3)
+term[4]: c.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 2)
+term[5]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+term[6]: b.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 1)
+Query plan:
+temp(order by)
+    subplan: hash-join (left outer join)
+                 edge:  term[0]
+                 outer: hash-join (left outer join)
+                            edge:  term[1]
+                            outer: hash-join (left outer join)
+                                       edge:  term[2]
+                                       outer: sscan
+                                                  class: a node[0]
+                                                  sargs: term[5]
+                                                  cost:  1 card 4
+                                       inner: sscan
+                                                  class: b node[1]
+                                                  sargs: term[6]
+                                                  cost:  1 card 3
+                                       cost:  2 card 4
+                            inner: sscan
+                                       class: c node[2]
+                                       sargs: term[4]
+                                       cost:  1 card 3
+                            cost:  4 card 4
+                 inner: sscan
+                            class: d node[3]
+                            sargs: term[3]
+                            cost:  1 card 3
+                 cost:  5 card 4
+    sort:  1 asc
+    cost:  11 card 4
+Query stmt:
+select /*+ ORDERED USE_HASH */ a.ca, b.ca, c.ca, d.ca from ta a left outer join tb b on b.flag= ?:2  and b.ca=a.ca left outer join tc c on c.flag= ?:1  and c.ca=b.ca left outer join td d on d.flag= ?:0  and d.ca=c.ca where a.flag= ?:3  order by 1
+===================================================
+0
+===================================================
+    
+####  2. left outer join (non-ansi)     
+
+===================================================
+a_ca    b_ca    c_ca    d_ca    
+1     1     1     1     
+2     null     null     null     
+3     3     null     null     
+4     4     4     null     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0]
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 5) (loc 0)
+node[1]: dba.tb b(6/1) (sargs 6) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(6/1) (sargs 4) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(6/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
+term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
+Join graph terms:
+term[3]: d.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 3)
+term[4]: c.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 2)
+term[5]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+term[6]: b.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 1)
+Query plan:
+temp(order by)
+    subplan: hash-join (left outer join)
+                 edge:  term[0]
+                 outer: hash-join (left outer join)
+                            edge:  term[1]
+                            outer: hash-join (left outer join)
+                                       edge:  term[2]
+                                       outer: sscan
+                                                  class: a node[0]
+                                                  sargs: term[5]
+                                                  cost:  1 card 4
+                                       inner: sscan
+                                                  class: b node[1]
+                                                  sargs: term[6]
+                                                  cost:  1 card 3
+                                       cost:  2 card 4
+                            inner: sscan
+                                       class: c node[2]
+                                       sargs: term[4]
+                                       cost:  1 card 3
+                            cost:  4 card 4
+                 inner: sscan
+                            class: d node[3]
+                            sargs: term[3]
+                            cost:  1 card 3
+                 cost:  5 card 4
+    sort:  1 asc
+    cost:  11 card 4
+Query stmt:
+select /*+ ORDERED USE_HASH */ a.ca, b.ca, c.ca, d.ca from ta a left outer join tb b on b.flag= ?:2  and a.ca=b.ca left outer join tc c on c.flag= ?:1  and b.ca=c.ca left outer join td d on d.flag= ?:0  and c.ca=d.ca where a.flag= ?:3  order by 1
+===================================================
+0
+===================================================
+    
+####  3. left outer join + during join terms     
+
+===================================================
+a_ca    b_ca    c_ca    d_ca    
+1     1     1     1     
+2     null     null     null     
+3     3     null     null     
+4     4     4     null     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0] (f)
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 7) (loc 0)
+node[1]: dba.tb b(6/1) (sargs 8) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(6/1) (sargs 6) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(6/1) (sargs 4) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
+term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
+term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
+Join graph terms:
+term[3]: b.flag=1 (sel ?) (during join term) (not-join eligible) (loc 2)
+term[4]: d.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 3)
+term[5]: c.flag=1 (sel ?) (during join term) (not-join eligible) (loc 3)
+term[6]: c.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 2)
+term[7]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+term[8]: b.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 1)
+Query plan:
+temp(order by)
+    subplan: hash-join (left outer join)
+                 edge:  term[0]
+                 outer: hash-join (left outer join)
+                            edge:  term[1]
+                            outer: hash-join (left outer join)
+                                       edge:  term[2]
+                                       outer: sscan
+                                                  class: a node[0]
+                                                  sargs: term[7]
+                                                  cost:  1 card 4
+                                       inner: sscan
+                                                  class: b node[1]
+                                                  sargs: term[8]
+                                                  cost:  1 card 3
+                                       cost:  2 card 4
+                            inner: sscan
+                                       class: c node[2]
+                                       sargs: term[6]
+                                       cost:  1 card 3
+                            during:term[3]
+                            cost:  4 card 4
+                 inner: sscan
+                            class: d node[3]
+                            sargs: term[4]
+                            cost:  1 card 3
+                 during:term[5]
+                 cost:  5 card 4
+    sort:  1 asc
+    cost:  11 card 4
+Query stmt:
+select /*+ ORDERED USE_HASH */ a.ca, b.ca, c.ca, d.ca, a.flag from ta a left outer join tb b on b.flag= ?:4  and b.ca=a.ca left outer join tc c on c.flag= ?:3  and b.flag= ?:2  and c.ca=b.ca left outer join td d on d.flag= ?:1  and c.flag= ?:0  and d.ca=c.ca where a.flag= ?:5  order by 1
+===================================================
+0
+===================================================
+    
+####  4. left outer join (ansi) + after join terms     
+
+===================================================
+a_ca    b_ca    c_ca    d_ca    
+1     1     1     1     
+2     null     null     null     
+3     3     null     null     
+4     4     4     null     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0]
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 6) (loc 0)
+node[1]: dba.tb b(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(6/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: c.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
+term[1]: d.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
+term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
+Join graph terms:
+term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[4]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[5]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+temp(order by)
+    subplan: hash-join (left outer join)
+                 edge:  term[1]
+                 outer: hash-join (left outer join)
+                            edge:  term[0]
+                            outer: hash-join (left outer join)
+                                       edge:  term[2]
+                                       outer: sscan
+                                                  class: a node[0]
+                                                  sargs: term[6]
+                                                  cost:  1 card 4
+                                       inner: sscan
+                                                  class: b node[1]
+                                                  cost:  1 card 6
+                                       cost:  3 card 6
+                            inner: sscan
+                                       class: c node[2]
+                                       cost:  1 card 6
+                            cost:  4 card 12
+                 inner: sscan
+                            class: d node[3]
+                            cost:  1 card 6
+                 after: term[3] AND term[4] AND term[5]
+                 cost:  7 card 1
+    sort:  1 asc
+    cost:  13 card 1
+Query stmt:
+select /*+ ORDERED USE_HASH */ a.ca, b.ca, c.ca, d.ca from ta a left outer join tb b on b.ca=a.ca left outer join tc c on c.ca=b.ca left outer join td d on d.ca=c.ca where nvl(b.flag, 0)=0 and nvl(c.flag, 0)=0 and nvl(d.flag, 0)=0 and a.flag= ?:0  order by 1
+===================================================
+0
+===================================================
+    
+####  5. left outer join (non-ansi) + after join terms     
+
+===================================================
+a_ca    b_ca    c_ca    d_ca    
+1     1     1     1     
+2     null     null     null     
+3     3     null     null     
+4     4     4     null     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0]
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 6) (loc 0)
+node[1]: dba.tb b(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(6/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: b.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
+term[1]: c.ca=d.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
+term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
+Join graph terms:
+term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[4]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[5]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+temp(order by)
+    subplan: hash-join (left outer join)
+                 edge:  term[1]
+                 outer: hash-join (left outer join)
+                            edge:  term[0]
+                            outer: hash-join (left outer join)
+                                       edge:  term[2]
+                                       outer: sscan
+                                                  class: a node[0]
+                                                  sargs: term[6]
+                                                  cost:  1 card 4
+                                       inner: sscan
+                                                  class: b node[1]
+                                                  cost:  1 card 6
+                                       cost:  3 card 6
+                            inner: sscan
+                                       class: c node[2]
+                                       cost:  1 card 6
+                            cost:  4 card 12
+                 inner: sscan
+                            class: d node[3]
+                            cost:  1 card 6
+                 after: term[3] AND term[4] AND term[5]
+                 cost:  7 card 1
+    sort:  1 asc
+    cost:  13 card 1
+Query stmt:
+select /*+ ORDERED USE_HASH */ a.ca, b.ca, c.ca, d.ca from ta a left outer join tb b on a.ca=b.ca left outer join tc c on b.ca=c.ca left outer join td d on c.ca=d.ca where nvl(b.flag, 0)=0 and nvl(c.flag, 0)=0 and nvl(d.flag, 0)=0 and a.flag= ?:0  order by 1
+===================================================
+0
+===================================================
+    
+####  6. right outer join (ansi)     
+
+===================================================
+d_ca    d_flag    c_ca    c_flag    b_ca    b_flag    a_ca    
+1     0     1     0     1     0     1     
+1     1     1     0     1     0     1     
+1     0     1     1     1     0     1     
+1     1     1     1     1     0     1     
+1     0     1     0     1     1     1     
+1     1     1     0     1     1     1     
+1     0     1     1     1     1     1     
+1     1     1     1     1     1     1     
+null     null     null     null     null     null     2     
+null     null     null     null     3     0     3     
+null     null     null     null     3     1     3     
+null     null     4     0     4     0     4     
+null     null     4     1     4     0     4     
+null     null     4     0     4     1     4     
+null     null     4     1     4     1     4     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0] (f)
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1] (f)
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2] (f)
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.td d(6/1) (loc 0)
+node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.ta a(8/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
+term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
+Join graph terms:
+term[3]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+temp(order by)
+    subplan: hash-join (right outer join)
+                 edge:  term[2]
+                 outer: hash-join (right outer join)
+                            edge:  term[1]
+                            outer: hash-join (right outer join)
+                                       edge:  term[0]
+                                       outer: sscan
+                                                  class: d node[0]
+                                                  cost:  1 card 6
+                                       inner: sscan
+                                                  class: c node[1]
+                                                  cost:  1 card 6
+                                       cost:  3 card 12
+                            inner: sscan
+                                       class: b node[2]
+                                       cost:  1 card 6
+                            cost:  5 card 24
+                 inner: sscan
+                            class: a node[3]
+                            sargs: term[3]
+                            cost:  1 card 4
+                 cost:  8 card 24
+    sort:  7 asc, 6 asc, 5 asc, 4 asc, 3 asc, 2 asc, 1 asc
+    cost:  14 card 24
+Query stmt:
+select /*+ ORDERED USE_HASH */ d.ca, d.flag, c.ca, c.flag, b.ca, b.flag, a.ca from td d right outer join tc c on c.ca=d.ca right outer join tb b on b.ca=c.ca right outer join ta a on a.ca=b.ca where a.flag= ?:0  order by 7, 6, 5, 4, 3, 2, 1
+===================================================
+0
+===================================================
+    
+####  7. right outer join (non-ansi)     
+
+===================================================
+d_ca    d_flag    c_ca    c_flag    b_ca    b_flag    a_ca    
+1     0     1     0     1     0     1     
+1     1     1     0     1     0     1     
+1     0     1     1     1     0     1     
+1     1     1     1     1     0     1     
+1     0     1     0     1     1     1     
+1     1     1     0     1     1     1     
+1     0     1     1     1     1     1     
+1     1     1     1     1     1     1     
+null     null     null     null     null     null     2     
+null     null     null     null     3     0     3     
+null     null     null     null     3     1     3     
+null     null     4     0     4     0     4     
+null     null     4     1     4     0     4     
+null     null     4     0     4     1     4     
+null     null     4     1     4     1     4     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0] (f)
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1] (f)
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2] (f)
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.td d(6/1) (loc 0)
+node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.ta a(8/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
+term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
+term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
+Join graph terms:
+term[3]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+temp(order by)
+    subplan: hash-join (right outer join)
+                 edge:  term[2]
+                 outer: hash-join (right outer join)
+                            edge:  term[1]
+                            outer: hash-join (right outer join)
+                                       edge:  term[0]
+                                       outer: sscan
+                                                  class: d node[0]
+                                                  cost:  1 card 6
+                                       inner: sscan
+                                                  class: c node[1]
+                                                  cost:  1 card 6
+                                       cost:  3 card 12
+                            inner: sscan
+                                       class: b node[2]
+                                       cost:  1 card 6
+                            cost:  5 card 24
+                 inner: sscan
+                            class: a node[3]
+                            sargs: term[3]
+                            cost:  1 card 4
+                 cost:  8 card 24
+    sort:  7 asc, 6 asc, 5 asc, 4 asc, 3 asc, 2 asc, 1 asc
+    cost:  14 card 24
+Query stmt:
+select /*+ ORDERED USE_HASH */ d.ca, d.flag, c.ca, c.flag, b.ca, b.flag, a.ca from td d right outer join tc c on d.ca=c.ca right outer join tb b on c.ca=b.ca right outer join ta a on b.ca=a.ca where a.flag= ?:0  order by 7, 6, 5, 4, 3, 2, 1
+===================================================
+0
+===================================================
+    
+####  8. right outer join + during join terms     
+
+===================================================
+d_ca    d_flag    c_ca    c_flag    b_ca    b_flag    a_ca    a_flag    
+null     null     null     null     null     null     1     0     
+null     null     null     null     null     null     2     0     
+null     null     null     null     null     null     3     0     
+null     null     null     null     null     null     4     0     
+null     null     null     null     1     0     1     1     
+null     null     1     0     1     1     1     1     
+1     0     1     1     1     1     1     1     
+1     1     1     1     1     1     1     1     
+null     null     null     null     null     null     2     1     
+null     null     null     null     3     0     3     1     
+null     null     null     null     3     1     3     1     
+null     null     null     null     4     0     4     1     
+null     null     4     0     4     1     4     1     
+null     null     4     1     4     1     4     1     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0] (f)
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1] (f)
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2] (f)
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3] (f)
+Join graph nodes:
+node[0]: dba.td d(6/1) (loc 0)
+node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.ta a(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
+term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
+Join graph terms:
+term[3]: a.flag=1 (sel ?) (during join term) (not-join eligible) (loc 3)
+term[4]: b.flag=1 (sel ?) (during join term) (not-join eligible) (loc 2)
+term[5]: c.flag=1 (sel ?) (during join term) (not-join eligible) (loc 1)
+Query plan:
+temp(order by)
+    subplan: hash-join (right outer join)
+                 edge:  term[2]
+                 outer: hash-join (right outer join)
+                            edge:  term[1]
+                            outer: hash-join (right outer join)
+                                       edge:  term[0]
+                                       outer: sscan
+                                                  class: d node[0]
+                                                  cost:  1 card 6
+                                       inner: sscan
+                                                  class: c node[1]
+                                                  cost:  1 card 6
+                                       during:term[5]
+                                       cost:  3 card 6
+                            inner: sscan
+                                       class: b node[2]
+                                       cost:  1 card 6
+                            during:term[4]
+                            cost:  5 card 6
+                 inner: sscan
+                            class: a node[3]
+                            cost:  1 card 8
+                 during:term[3]
+                 cost:  6 card 8
+    sort:  8 asc, 7 asc, 6 asc, 5 asc, 4 asc, 3 asc, 2 asc, 1 asc
+    cost:  12 card 8
+Query stmt:
+select /*+ ORDERED USE_HASH */ d.ca, d.flag, c.ca, c.flag, b.ca, b.flag, a.ca, a.flag from td d right outer join tc c on c.flag= ?:2  and c.ca=d.ca right outer join tb b on b.flag= ?:1  and b.ca=c.ca right outer join ta a on a.flag= ?:0  and a.ca=b.ca order by 8, 7, 6, 5, 4, 3, 2, 1
+===================================================
+0
+===================================================
+    
+####  9. right outer join (ansi) + after join terms     
+
+===================================================
+d_ca    c_ca    b_ca    a_ca    
+1     1     1     1     
+null     null     null     2     
+null     null     3     3     
+null     4     4     4     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0]
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.td d(6/1) (loc 0)
+node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.ta a(8/1) (sargs 6) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
+term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
+Join graph terms:
+term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[4]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[5]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+temp(order by)
+    subplan: hash-join (right outer join)
+                 edge:  term[2]
+                 outer: hash-join (right outer join)
+                            edge:  term[1]
+                            outer: hash-join (right outer join)
+                                       edge:  term[0]
+                                       outer: sscan
+                                                  class: d node[0]
+                                                  cost:  1 card 6
+                                       inner: sscan
+                                                  class: c node[1]
+                                                  cost:  1 card 6
+                                       cost:  3 card 12
+                            inner: sscan
+                                       class: b node[2]
+                                       cost:  1 card 6
+                            cost:  5 card 24
+                 inner: sscan
+                            class: a node[3]
+                            sargs: term[6]
+                            cost:  1 card 4
+                 after: term[3] AND term[4] AND term[5]
+                 cost:  8 card 1
+    sort:  4 asc, 3 asc, 2 asc, 1 asc
+    cost:  14 card 1
+Query stmt:
+select /*+ ORDERED USE_HASH */ d.ca, c.ca, b.ca, a.ca from td d right outer join tc c on c.ca=d.ca right outer join tb b on b.ca=c.ca right outer join ta a on a.ca=b.ca where nvl(d.flag, 0)=0 and nvl(c.flag, 0)=0 and nvl(b.flag, 0)=0 and a.flag= ?:0  order by 4, 3, 2, 1
+===================================================
+0
+===================================================
+    
+#### 10. right outer join (non-ansi) + after join terms     
+
+===================================================
+d_ca    c_ca    b_ca    a_ca    
+1     1     1     1     
+null     null     null     2     
+null     null     3     3     
+null     4     4     4     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0] (f)
+seg[2]: flag[0]
+seg[3]: [1]
+seg[4]: ca[1] (f)
+seg[5]: flag[1]
+seg[6]: [2]
+seg[7]: ca[2] (f)
+seg[8]: flag[2]
+seg[9]: [3]
+seg[10]: ca[3] (f)
+seg[11]: flag[3]
+Join graph nodes:
+node[0]: dba.td d(6/1) (loc 0)
+node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.ta a(8/1) (sargs 6) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
+term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
+term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
+Join graph terms:
+term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[4]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[5]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
+term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+temp(order by)
+    subplan: hash-join (right outer join)
+                 edge:  term[2]
+                 outer: hash-join (right outer join)
+                            edge:  term[1]
+                            outer: hash-join (right outer join)
+                                       edge:  term[0]
+                                       outer: sscan
+                                                  class: d node[0]
+                                                  cost:  1 card 6
+                                       inner: sscan
+                                                  class: c node[1]
+                                                  cost:  1 card 6
+                                       cost:  3 card 12
+                            inner: sscan
+                                       class: b node[2]
+                                       cost:  1 card 6
+                            cost:  5 card 24
+                 inner: sscan
+                            class: a node[3]
+                            sargs: term[6]
+                            cost:  1 card 4
+                 after: term[3] AND term[4] AND term[5]
+                 cost:  8 card 1
+    sort:  4 asc, 3 asc, 2 asc, 1 asc
+    cost:  14 card 1
+Query stmt:
+select /*+ ORDERED USE_HASH */ d.ca, c.ca, b.ca, a.ca from td d right outer join tc c on d.ca=c.ca right outer join tb b on c.ca=b.ca right outer join ta a on b.ca=a.ca where nvl(d.flag, 0)=0 and nvl(c.flag, 0)=0 and nvl(b.flag, 0)=0 and a.flag= ?:0  order by 4, 3, 2, 1
+===================================================
+0
+===================================================
+0

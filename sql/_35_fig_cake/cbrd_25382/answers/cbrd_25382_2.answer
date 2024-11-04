@@ -1,0 +1,1548 @@
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+8
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  1. hint: recompile ordered use_hash     
+
+===================================================
+4
+===================================================
+12
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  5 card 8
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  7 card 8
+Query stmt:
+select /*+ ORDERED USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  2. hint: recompile ordered use_hash(a)     
+
+===================================================
+1
+===================================================
+3
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  217 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  326 card 8
+Query stmt:
+select /*+ ORDERED USE_HASH(a) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     null     2     2     2     
+3     null     3     3     3     
+4     null     4     4     4     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  3. hint: recompile ordered use_hash(b)     
+
+===================================================
+1
+===================================================
+3
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  219 card 8
+Query stmt:
+select /*+ ORDERED USE_HASH(b) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     null     1     1     1     
+2     1     null     null     null     
+3     null     3     3     3     
+4     null     4     4     4     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  4. hint: recompile ordered use_hash(c)     
+
+===================================================
+1
+===================================================
+3
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  219 card 8
+Query stmt:
+select /*+ ORDERED USE_HASH(c) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     null     1     1     1     
+2     null     2     2     2     
+3     1     null     null     null     
+4     null     4     4     4     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  5. hint: recompile ordered use_hash(d)     
+
+===================================================
+1
+===================================================
+3
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  217 card 8
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  219 card 8
+Query stmt:
+select /*+ ORDERED USE_HASH(d) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     null     1     1     1     
+2     null     2     2     2     
+3     null     3     3     3     
+4     1     null     null     null     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  6. hint: recompile ordered use_hash no_use_hash     
+
+===================================================
+8
+===================================================
+24
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  217 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  326 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     1     null     null     null     
+6     1     null     null     null     
+7     1     null     null     null     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  7. hint: recompile ordered use_hash no_use_hash(a)     
+
+===================================================
+5
+===================================================
+15
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  5 card 8
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  7 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(a) USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     1     null     null     null     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  8. hint: recompile ordered use_hash no_use_hash(b)     
+
+===================================================
+5
+===================================================
+15
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  113 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(b) USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     null     5     5     5     
+6     1     null     null     null     
+7     null     7     7     7     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  9. hint: recompile ordered use_hash no_use_hash(c)     
+
+===================================================
+5
+===================================================
+15
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  113 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(c) USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     null     5     5     5     
+6     null     6     6     6     
+7     1     null     null     null     
+8     null     8     8     8     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 10. hint: recompile ordered use_hash no_use_hash(d)     
+
+===================================================
+5
+===================================================
+15
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  5 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  113 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(d) USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 11. hint: recompile ordered use_hash(a,b) no_use_hash(c,d)     
+
+===================================================
+4
+===================================================
+12
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  219 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(c, d) USE_HASH(a, b) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     null     3     3     3     
+4     null     4     4     4     
+5     null     5     5     5     
+6     null     6     6     6     
+7     1     null     null     null     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 12. hint: recompile ordered use_hash(a,c) no_use_hash(b,d)     
+
+===================================================
+4
+===================================================
+12
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  219 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(b, d) USE_HASH(a, c) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     null     2     2     2     
+3     1     null     null     null     
+4     null     4     4     4     
+5     null     5     5     5     
+6     1     null     null     null     
+7     null     7     7     7     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 13. hint: recompile ordered use_hash(a,b,c) no_use_hash(b,d)     
+
+===================================================
+5
+===================================================
+15
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  111 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  219 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(b, d) USE_HASH(a, b, c) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     null     4     4     4     
+5     null     5     5     5     
+6     1     null     null     null     
+7     null     7     7     7     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 14. hint: recompile ordered use_hash(b,c,d) no_use_hash(b,c,d)     
+
+===================================================
+6
+===================================================
+18
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[2]
+    outer: nl-join (inner join)
+               edge:  term[1]
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  217 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 8
+    cost:  326 card 8
+Query stmt:
+select /*+ ORDERED NO_USE_HASH(b, c, d) USE_HASH(b, c, d) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     null     1     1     1     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     null     5     5     5     
+6     1     null     null     null     
+7     1     null     null     null     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 15. hint: recompile use_hash     
+
+===================================================
+4
+===================================================
+16
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 2) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+node[2]: dba.tc c(8/1) (loc 2)
+node[3]: dba.td d(8/1) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[2]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Join graph partitions:
+partition[0]: (nodes 0 1 2) (edges 0 1) (dependencies empty)
+partition[1]: (nodes 3) (edges empty) (dependencies empty)
+Query plan:
+nl-join (cross join)
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[2]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  5 card 8
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  113 card 64
+Query stmt:
+select /*+ USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     1     null     null     null     
+5     null     5     5     null     
+6     null     6     6     null     
+7     null     7     7     null     
+8     null     8     8     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 16. hint: recompile use_hash(a,b,c) -> split(d)     
+
+===================================================
+3
+===================================================
+14
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 2) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+node[2]: dba.tc c(8/1) (loc 2)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[2]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[1]
+    outer: hash-join (inner join)
+               edge:  term[0]
+               outer: sscan
+                          class: a node[0]
+                          sargs: term[2]
+                          cost:  1 card 8
+               inner: sscan
+                          class: b node[1]
+                          cost:  1 card 8
+               cost:  3 card 8
+    inner: sscan
+               class: c node[2]
+               cost:  1 card 8
+    cost:  5 card 8
+Query stmt:
+select /*+ USE_HASH(a, b, c) */ c,class c,b,class b from ta a, tb b, tc c where a.ca=b.ca and b.ca=c.ca and a.flag= ?:0 
+Join graph segments (f indicates final):
+seg[0]: [0] (f)
+Join graph nodes:
+node[0]: dba.td d(8/1) (loc 0)
+Query plan:
+sscan
+    class: d node[0]
+    cost:  1 card 8
+Query stmt:
+select /*+ USE_HASH */ d,class d from td d
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     1     null     null     null     
+4     null     4     4     null     
+5     null     5     5     null     
+6     null     6     6     null     
+7     null     7     7     null     
+8     null     8     8     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 17. hint: recompile no_use_hash     
+
+===================================================
+4
+===================================================
+20
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: [3] (f)
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 1) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+node[2]: dba.tc c(8/1) (loc 2)
+node[3]: dba.td d(8/1) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[1]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Join graph partitions:
+partition[0]: (nodes 0 1) (edges 0) (dependencies empty)
+partition[1]: (nodes 2) (edges empty) (dependencies empty)
+partition[2]: (nodes 3) (edges empty) (dependencies empty)
+Query plan:
+nl-join (cross join)
+    outer: nl-join (cross join)
+               outer: nl-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[1]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     sargs: term[0]
+                                     cost:  1 card 8
+                          cost:  109 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  217 card 64
+    inner: sscan
+               class: d node[3]
+               cost:  1 card 8
+    cost:  383 card 512
+Query stmt:
+select /*+ NO_USE_HASH */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     null     1     null     null     
+2     null     2     null     null     
+3     null     3     null     null     
+4     null     4     null     null     
+5     1     null     null     null     
+6     1     null     null     null     
+7     1     null     null     null     
+8     1     null     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 18. hint: recompile no_use_hash(a,b) -> split(c,d)     
+
+===================================================
+2
+===================================================
+18
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 1) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[1]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Query plan:
+nl-join (inner join)
+    edge:  term[0]
+    outer: sscan
+               class: a node[0]
+               sargs: term[1]
+               cost:  1 card 8
+    inner: sscan
+               class: b node[1]
+               sargs: term[0]
+               cost:  1 card 8
+    cost:  109 card 8
+Query stmt:
+select /*+ NO_USE_HASH(a, b) */ b,class b from ta a, tb b where a.ca=b.ca and a.flag= ?:0 
+Join graph segments (f indicates final):
+seg[0]: [0] (f)
+Join graph nodes:
+node[0]: dba.tc c(8/1) (loc 0)
+Query plan:
+sscan
+    class: c node[0]
+    cost:  1 card 8
+Query stmt:
+select /*+ NO_USE_HASH */ c,class c from tc c
+Join graph segments (f indicates final):
+seg[0]: [0] (f)
+Join graph nodes:
+node[0]: dba.td d(8/1) (loc 0)
+Query plan:
+sscan
+    class: d node[0]
+    cost:  1 card 8
+Query stmt:
+select /*+ NO_USE_HASH */ d,class d from td d
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     null     1     null     null     
+2     null     2     null     null     
+3     null     3     null     null     
+4     null     4     null     null     
+5     1     null     null     null     
+6     1     null     null     null     
+7     null     7     null     null     
+8     null     8     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 19. hint: recompile use_hash(a,c) no_use_hash(b) -> split(d)     
+
+===================================================
+3
+===================================================
+19
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 1) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+node[2]: dba.tc c(8/1) (loc 2)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[1]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Join graph partitions:
+partition[0]: (nodes 0 1) (edges 0) (dependencies empty)
+partition[1]: (nodes 2) (edges empty) (dependencies empty)
+Query plan:
+nl-join (cross join)
+    outer: hash-join (inner join)
+               edge:  term[0]
+               outer: sscan
+                          class: b node[1]
+                          cost:  1 card 8
+               inner: sscan
+                          class: a node[0]
+                          sargs: term[1]
+                          cost:  1 card 8
+               cost:  3 card 8
+    inner: sscan
+               class: c node[2]
+               cost:  1 card 8
+    cost:  111 card 64
+Query stmt:
+select /*+ NO_USE_HASH(b) USE_HASH(a, c) */ c,class c,b,class b from ta a, tb b, tc c where a.ca=b.ca and a.flag= ?:0 
+Join graph segments (f indicates final):
+seg[0]: [0] (f)
+Join graph nodes:
+node[0]: dba.td d(8/1) (loc 0)
+Query plan:
+sscan
+    class: d node[0]
+    cost:  1 card 8
+Query stmt:
+select /*+ NO_USE_HASH USE_HASH */ d,class d from td d
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     null     2     null     null     
+3     1     null     null     null     
+4     null     4     null     null     
+5     null     5     null     null     
+6     1     null     null     null     
+7     null     7     null     null     
+8     null     8     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 20. hint: recompile use_hash(a,b)     
+
+===================================================
+2
+===================================================
+18
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 2) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+node[2]: dba.tc c(8/1) (loc 2)
+node[3]: dba.td d(8/1) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1]
+eqclass[1]: ca[2] ca[3]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[2]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Join graph partitions:
+partition[0]: (nodes 0 1) (edges 0) (dependencies empty)
+partition[1]: (nodes 2 3) (edges 1) (dependencies empty)
+Query plan:
+nl-join (cross join)
+    outer: hash-join (inner join)
+               edge:  term[0]
+               outer: sscan
+                          class: a node[0]
+                          sargs: term[2]
+                          cost:  1 card 8
+               inner: sscan
+                          class: b node[1]
+                          cost:  1 card 8
+               cost:  3 card 8
+    inner: temp
+               order: UNORDERED
+               subplan: nl-join (inner join)
+                            edge:  term[1]
+                            outer: sscan
+                                       class: c node[2]
+                                       cost:  1 card 8
+                            inner: sscan
+                                       class: d node[3]
+                                       sargs: term[1]
+                                       cost:  1 card 8
+                            cost:  109 card 8
+               cost:  115 card 8
+    cost:  225 card 64
+Query stmt:
+select /*+ USE_HASH(a, b) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and c.ca=d.ca and a.flag= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     null     
+2     1     null     null     null     
+3     null     3     null     null     
+4     null     4     null     null     
+5     null     5     null     null     
+6     null     6     null     null     
+7     null     7     null     null     
+8     null     8     null     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+    
+#### 21. hint: recompile use_hash(a,b,c)     
+
+===================================================
+3
+===================================================
+7
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: flag[0]
+seg[3]: [1] (f)
+seg[4]: ca[1]
+seg[5]: [2] (f)
+seg[6]: ca[2]
+seg[7]: [3] (f)
+seg[8]: ca[3]
+Join graph nodes:
+node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
+node[1]: dba.tb b(8/1) (loc 1)
+node[2]: dba.tc c(8/1) (loc 2)
+node[3]: dba.td d(8/1) (sargs 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
+Join graph terms:
+term[2]: d.ca=8 (sel ?) (sarg term) (not-join eligible) (loc 0)
+term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
+Join graph partitions:
+partition[0]: (nodes 0 1 2) (edges 0 1) (dependencies empty)
+partition[1]: (nodes 3) (edges empty) (dependencies empty)
+Query plan:
+nl-join (cross join)
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: sscan
+                                     class: a node[0]
+                                     sargs: term[3]
+                                     cost:  1 card 8
+                          inner: sscan
+                                     class: b node[1]
+                                     cost:  1 card 8
+                          cost:  3 card 8
+               inner: sscan
+                          class: c node[2]
+                          cost:  1 card 8
+               cost:  5 card 8
+    inner: sscan
+               class: d node[3]
+               sargs: term[2]
+               cost:  1 card 1
+    cost:  113 card 8
+Query stmt:
+select /*+ USE_HASH(a, b, c) */ d,class d,c,class c,b,class b from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and a.flag= ?:1  and d.ca= ?:0 
+===================================================
+a_ca    a_flag    b_ca    c_ca    d_ca    
+1     1     null     null     1     
+2     1     null     null     2     
+3     1     null     null     3     
+4     null     4     4     4     
+5     null     5     5     5     
+6     null     6     6     6     
+7     null     7     7     7     
+8     null     8     8     null     
+
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0

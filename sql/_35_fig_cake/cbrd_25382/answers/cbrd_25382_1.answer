@@ -1,0 +1,746 @@
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+2000
+===================================================
+2000
+===================================================
+2000
+===================================================
+2000
+===================================================
+2000
+===================================================
+2000
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+    
+####  1. build input: small tuple count     
+
+===================================================
+count(*)    
+20     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: cd[0]
+seg[2]: cb[0]
+seg[3]: [1]
+seg[4]: cd[1]
+seg[5]: cb[1]
+seg[6]: [2]
+seg[7]: cd[2]
+seg[8]: cb[2]
+seg[9]: [3]
+seg[10]: cd[3]
+seg[11]: cb[3]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (sargs 4) (loc 0)
+node[1]: dba.tb b(2000/6) (sargs 5) (loc 1)
+node[2]: dba.tc c(2000/6) (sargs 6) (loc 2)
+node[3]: dba.td d(2000/6) (sargs 3) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: cd[0] cd[1] cd[2] cd[3]
+Join graph edges:
+term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+term[1]: b.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[1] cd[2]) (loc 0)
+term[2]: c.cd=d.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[2] cd[3]) (loc 0)
+Join graph terms:
+term[3]: d.cb=1 (sel ?) (sarg term) (not-join eligible) (indexable cb[3]) (loc 0)
+term[4]: a.cb range (1 =  or 2 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[0]) (loc 0)
+term[5]: b.cb range (1 =  or 2 =  or 3 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[1]) (loc 0)
+term[6]: c.cb range (1 =  or 2 =  or 3 =  or 4 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[2]) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[0]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[2]
+                          outer: iscan
+                                     class: c node[2]
+                                     index: i2 term[6]
+                                     cost:  7 card 79
+                          inner: iscan
+                                     class: d node[3]
+                                     index: i2 term[3]
+                                     cost:  4 card 20
+                          cost:  17 card 1
+               inner: iscan
+                          class: b node[1]
+                          index: i2 term[5]
+                          cost:  6 card 59
+               cost:  26 card 1
+    inner: iscan
+               class: a node[0]
+               index: i2 term[4]
+               cost:  5 card 40
+    cost:  33 card 1
+Query stmt:
+select /*+ USE_HASH */ count(*) from ta a, tb b, tc c, td d where a.cd=b.cd and b.cd=c.cd and c.cd=d.cd and ((a.cb= ?:0 ) or (a.cb= ?:1 )) and ((b.cb= ?:2 ) or (b.cb= ?:3 ) or (b.cb= ?:4 )) and ((c.cb= ?:5 ) or (c.cb= ?:6 ) or (c.cb= ?:7 ) or (c.cb= ?:8 )) and d.cb= ?:9 
+===================================================
+trace    
+
+Query Plan:
+  HASH JOIN (inner join)
+    HASH JOIN (inner join)
+      HASH JOIN (inner join)
+        INDEX SCAN (c.i?) (key range: ((c.cb= ?:? ) or (c.cb= ?:? ) or (c.cb= ?:? ) or (c.cb= ?:? )))
+        INDEX SCAN (d.i?) (key range: d.cb= ?:? )
+      INDEX SCAN (b.i?) (key range: ((b.cb= ?:? ) or (b.cb= ?:? ) or (b.cb= ?:? )))
+    INDEX SCAN (a.i?) (key range: ((a.cb= ?:? ) or (a.cb= ?:? )))
+
+  rewritten query: select /*+ USE_HASH */ count(*) from [dba.ta] a, [dba.tb] b, [dba.tc] c, [dba.td] d where a.cd=b.cd and b.cd=c.cd and c.cd=d.cd and ((a.cb= ?:? ) or (a.cb= ?:? )) and ((b.cb= ?:? ) or (b.cb= ?:? ) or (b.cb= ?:? )) and ((c.cb= ?:? ) or (c.cb= ?:? ) or (c.cb= ?:? ) or (c.cb= ?:? )) and d.cb= ?:? 
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+              HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+                  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+                      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+                          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                            SCAN (index: dba.td.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+                        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+                          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                            SCAN (index: dba.tc.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+                PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+                  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                    SCAN (index: dba.tb.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (index: dba.ta.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+    
+####  2. build input: small tuple count + ordered     
+
+===================================================
+count(*)    
+20     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: cd[0]
+seg[2]: cb[0]
+seg[3]: [1]
+seg[4]: cd[1]
+seg[5]: cb[1]
+seg[6]: [2]
+seg[7]: cd[2]
+seg[8]: cb[2]
+seg[9]: [3]
+seg[10]: cd[3]
+seg[11]: cb[3]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (sargs 5) (loc 0)
+node[1]: dba.tb b(2000/6) (sargs 6) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(2000/6) (sargs 3) (outer-dep-set 0 1) (loc 2)
+node[3]: dba.td d(2000/6) (sargs 4) (outer-dep-set 0 1 2) (loc 3)
+Join graph equivalence classes:
+eqclass[0]: cd[0] cd[1] cd[2] cd[3]
+Join graph edges:
+term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+term[1]: b.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[1] cd[2]) (loc 0)
+term[2]: c.cd=d.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[2] cd[3]) (loc 0)
+Join graph terms:
+term[3]: c.cb=1 (sel ?) (sarg term) (not-join eligible) (indexable cb[2]) (loc 0)
+term[4]: d.cb range (1 =  or 2 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[3]) (loc 0)
+term[5]: a.cb range (1 =  or 2 =  or 3 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[0]) (loc 0)
+term[6]: b.cb range (1 =  or 2 =  or 3 =  or 4 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[1]) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[2]
+    outer: hash-join (inner join)
+               edge:  term[1]
+               outer: hash-join (inner join)
+                          edge:  term[0]
+                          outer: iscan
+                                     class: a node[0]
+                                     index: i2 term[5]
+                                     cost:  6 card 59
+                          inner: iscan
+                                     class: b node[1]
+                                     index: i2 term[6]
+                                     cost:  7 card 79
+                          cost:  22 card 2
+               inner: iscan
+                          class: c node[2]
+                          index: i2 term[3]
+                          cost:  4 card 20
+               cost:  27 card 1
+    inner: iscan
+               class: d node[3]
+               index: i2 term[4]
+               cost:  5 card 40
+    cost:  34 card 1
+Query stmt:
+select /*+ ORDERED USE_HASH */ count(*) from ta a, tb b, tc c, td d where a.cd=b.cd and b.cd=c.cd and c.cd=d.cd and ((a.cb= ?:0 ) or (a.cb= ?:1 ) or (a.cb= ?:2 )) and ((b.cb= ?:3 ) or (b.cb= ?:4 ) or (b.cb= ?:5 ) or (b.cb= ?:6 )) and ((d.cb= ?:7 ) or (d.cb= ?:8 )) and c.cb= ?:9 
+===================================================
+trace    
+
+Query Plan:
+  HASH JOIN (inner join)
+    HASH JOIN (inner join)
+      HASH JOIN (inner join)
+        INDEX SCAN (a.i?) (key range: ((a.cb= ?:? ) or (a.cb= ?:? ) or (a.cb= ?:? )))
+        INDEX SCAN (b.i?) (key range: ((b.cb= ?:? ) or (b.cb= ?:? ) or (b.cb= ?:? ) or (b.cb= ?:? )))
+      INDEX SCAN (c.i?) (key range: c.cb= ?:? )
+    INDEX SCAN (d.i?) (key range: ((d.cb= ?:? ) or (d.cb= ?:? )))
+
+  rewritten query: select /*+ ORDERED USE_HASH */ count(*) from [dba.ta] a, [dba.tb] b, [dba.tc] c, [dba.td] d where a.cd=b.cd and b.cd=c.cd and c.cd=d.cd and ((a.cb= ?:? ) or (a.cb= ?:? ) or (a.cb= ?:? )) and ((b.cb= ?:? ) or (b.cb= ?:? ) or (b.cb= ?:? ) or (b.cb= ?:? )) and ((d.cb= ?:? ) or (d.cb= ?:? )) and c.cb= ?:? 
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+              HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+                  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                    SCAN (index: dba.tc.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+                PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+                  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+                      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+                          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                            SCAN (index: dba.ta.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+                        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+                          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+                            SCAN (index: dba.tb.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (index: dba.td.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+    
+####  3. build input: int vs bigint -> int or bigint (page: int == bigint)     
+
+===================================================
+count(*)    
+2000     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: cb[0]
+seg[3]: cc[0]
+seg[4]: cd[0]
+seg[5]: [1]
+seg[6]: ca[1]
+seg[7]: cb[1]
+seg[8]: cc[1]
+seg[9]: cd[1]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (loc 0)
+node[1]: dba.t_bigint b(2000/8) (loc 1)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1]
+eqclass[1]: cb[0] cb[1]
+eqclass[2]: cc[0] cc[1]
+eqclass[3]: cd[0] cd[1]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
+term[1]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
+term[2]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
+term[3]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[0] AND term[1] AND term[2] AND term[3]
+    outer: sscan
+               class: a node[0]
+               cost:  11 card 2000
+    inner: sscan
+               class: b node[1]
+               cost:  13 card 2000
+    cost:  274 card 1
+Query stmt:
+select /*+ USE_HASH */ count(*) from ta a, t_bigint b where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd
+===================================================
+trace    
+
+Query Plan:
+  HASH JOIN (inner join)
+    TABLE SCAN (a)
+    TABLE SCAN (b)
+
+  rewritten query: select /*+ USE_HASH */ count(*) from [dba.ta] a, [dba.t_bigint] b where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.t_bigint), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+    
+####  4. build input: int vs numeric -> int (page: int < numeric)     
+
+===================================================
+count(*)    
+2000     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: cb[0]
+seg[3]: cc[0]
+seg[4]: cd[0]
+seg[5]: [1]
+seg[6]: ca[1]
+seg[7]: cb[1]
+seg[8]: cc[1]
+seg[9]: cd[1]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (loc 0)
+node[1]: dba.t_numeric b(2000/13) (loc 1)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1]
+eqclass[1]: cb[0] cb[1]
+eqclass[2]: cc[0] cc[1]
+eqclass[3]: cd[0] cd[1]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
+term[1]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
+term[2]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
+term[3]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[0] AND term[1] AND term[2] AND term[3]
+    outer: sscan
+               class: a node[0]
+               cost:  11 card 2000
+    inner: sscan
+               class: b node[1]
+               cost:  18 card 2000
+    cost:  279 card 1
+Query stmt:
+select /*+ USE_HASH */ count(*) from ta a, t_numeric b where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd
+===================================================
+trace    
+
+Query Plan:
+  HASH JOIN (inner join)
+    TABLE SCAN (a)
+    TABLE SCAN (b)
+
+  rewritten query: select /*+ USE_HASH */ count(*) from [dba.ta] a, [dba.t_numeric] b where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.t_numeric), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+    
+####  5. cost: in_memory, hybrid < file, build_method: in_memory     
+
+===================================================
+0
+===================================================
+count(*)    
+2000     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: cb[0]
+seg[3]: cc[0]
+seg[4]: cd[0]
+seg[5]: [1]
+seg[6]: ca[1]
+seg[7]: cb[1]
+seg[8]: cc[1]
+seg[9]: cd[1]
+seg[10]: [2]
+seg[11]: ca[2]
+seg[12]: cb[2]
+seg[13]: cc[2]
+seg[14]: cd[2]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (loc 0)
+node[1]: dba.tb b(2000/6) (loc 1)
+node[2]: dba.tc c(2000/6) (loc 2)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+eqclass[1]: cb[0] cb[1] cb[2]
+eqclass[2]: cc[0] cc[1] cc[2]
+eqclass[3]: cd[0] cd[1] cd[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
+term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
+term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
+term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
+term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
+term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
+term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
+Query plan:
+idx-join (inner join)
+    outer: hash-join (inner join)
+               edge:  term[0] AND term[2] AND term[4] AND term[6]
+               outer: sscan
+                          class: a node[0]
+                          cost:  11 card 2000
+               inner: sscan
+                          class: b node[1]
+                          cost:  11 card 2000
+               cost:  272 card 1
+    inner: iscan
+               class: c node[2]
+               index: i1 term[1] AND term[3] AND term[5]
+               sargs: term[7]
+               cost:  3 card 2000
+    sargs: term[7]
+    cost:  275 card 1
+Query stmt:
+select /*+ USE_NL(c) USE_HASH(a, b) */ count(*) from ta a, tb b, tc c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+===================================================
+trace    
+
+Query Plan:
+  NESTED LOOPS (inner join)
+    HASH JOIN (inner join)
+      TABLE SCAN (a)
+      TABLE SCAN (b)
+    INDEX SCAN (c.i?) (key range: a.ca=c.cakey range: a.cb=c.cbkey range: a.cc=c.cc)
+
+  rewritten query: select /*+ USE_NL(c) USE_HASH(a, b) */ count(*) from [dba.ta] a, [dba.tb] b, [dba.tc] c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      SCAN (index: dba.tc.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.tb), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+    
+####  6. cost: in_memory, hybrid < file, build_method: hybrid     
+
+===================================================
+0
+===================================================
+count(*)    
+2000     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: cb[0]
+seg[3]: cc[0]
+seg[4]: cd[0]
+seg[5]: [1]
+seg[6]: ca[1]
+seg[7]: cb[1]
+seg[8]: cc[1]
+seg[9]: cd[1]
+seg[10]: [2]
+seg[11]: ca[2]
+seg[12]: cb[2]
+seg[13]: cc[2]
+seg[14]: cd[2]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (loc 0)
+node[1]: dba.tb b(2000/6) (loc 1)
+node[2]: dba.tc c(2000/6) (loc 2)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+eqclass[1]: cb[0] cb[1] cb[2]
+eqclass[2]: cc[0] cc[1] cc[2]
+eqclass[3]: cd[0] cd[1] cd[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
+term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
+term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
+term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
+term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
+term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
+term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
+Query plan:
+idx-join (inner join)
+    outer: hash-join (inner join)
+               edge:  term[0] AND term[2] AND term[4] AND term[6]
+               outer: sscan
+                          class: a node[0]
+                          cost:  11 card 2000
+               inner: sscan
+                          class: b node[1]
+                          cost:  11 card 2000
+               cost:  272 card 1
+    inner: iscan
+               class: c node[2]
+               index: i1 term[1] AND term[3] AND term[5]
+               sargs: term[7]
+               cost:  3 card 2000
+    sargs: term[7]
+    cost:  275 card 1
+Query stmt:
+select /*+ USE_NL(c) USE_HASH(a, b) */ count(*) from ta a, tb b, tc c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+===================================================
+trace    
+
+Query Plan:
+  NESTED LOOPS (inner join)
+    HASH JOIN (inner join)
+      TABLE SCAN (a)
+      TABLE SCAN (b)
+    INDEX SCAN (c.i?) (key range: a.ca=c.cakey range: a.cb=c.cbkey range: a.cc=c.cc)
+
+  rewritten query: select /*+ USE_NL(c) USE_HASH(a, b) */ count(*) from [dba.ta] a, [dba.tb] b, [dba.tc] c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      SCAN (index: dba.tc.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: hybrid)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.tb), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+    
+####  7. cost: in_memory, hybrid < file, build_method: file     
+
+===================================================
+0
+===================================================
+count(*)    
+2000     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: cb[0]
+seg[3]: cc[0]
+seg[4]: cd[0]
+seg[5]: [1]
+seg[6]: ca[1]
+seg[7]: cb[1]
+seg[8]: cc[1]
+seg[9]: cd[1]
+seg[10]: [2]
+seg[11]: ca[2]
+seg[12]: cb[2]
+seg[13]: cc[2]
+seg[14]: cd[2]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (loc 0)
+node[1]: dba.tb b(2000/6) (outer-dep-set 0) (loc 1)
+node[2]: dba.tc c(2000/6) (outer-dep-set 0 1) (loc 2)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+eqclass[1]: cb[0] cb[1] cb[2]
+eqclass[2]: cc[0] cc[1] cc[2]
+eqclass[3]: cd[0] cd[1] cd[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
+term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
+term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
+term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
+term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
+term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
+term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
+Query plan:
+idx-join (inner join)
+    outer: hash-join (inner join)
+               edge:  term[0] AND term[2] AND term[4] AND term[6]
+               outer: sscan
+                          class: a node[0]
+                          cost:  11 card 2000
+               inner: sscan
+                          class: b node[1]
+                          cost:  11 card 2000
+               cost:  2272 card 1
+    inner: iscan
+               class: c node[2]
+               index: i1 term[1] AND term[3] AND term[5]
+               sargs: term[7]
+               cost:  3 card 2000
+    sargs: term[7]
+    cost:  2275 card 1
+Query stmt:
+select /*+ ORDERED USE_NL(c) USE_HASH(a, b) */ count(*) from ta a, tb b, tc c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+===================================================
+trace    
+
+Query Plan:
+  NESTED LOOPS (inner join)
+    HASH JOIN (inner join)
+      TABLE SCAN (a)
+      TABLE SCAN (b)
+    INDEX SCAN (c.i?) (key range: a.ca=c.cakey range: a.cb=c.cbkey range: a.cc=c.cc)
+
+  rewritten query: select /*+ ORDERED USE_NL(c) USE_HASH(a, b) */ count(*) from [dba.ta] a, [dba.tb] b, [dba.tc] c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      SCAN (index: dba.tc.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: file)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.tb), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+     
+
+===================================================
+count(*)    
+2000     
+
+Join graph segments (f indicates final):
+seg[0]: [0]
+seg[1]: ca[0]
+seg[2]: cb[0]
+seg[3]: cc[0]
+seg[4]: cd[0]
+seg[5]: [1]
+seg[6]: ca[1]
+seg[7]: cb[1]
+seg[8]: cc[1]
+seg[9]: cd[1]
+seg[10]: [2]
+seg[11]: ca[2]
+seg[12]: cb[2]
+seg[13]: cc[2]
+seg[14]: cd[2]
+Join graph nodes:
+node[0]: dba.ta a(2000/6) (loc 0)
+node[1]: dba.tb b(2000/6) (loc 1)
+node[2]: dba.tc c(2000/6) (loc 2)
+Join graph equivalence classes:
+eqclass[0]: ca[0] ca[1] ca[2]
+eqclass[1]: cb[0] cb[1] cb[2]
+eqclass[2]: cc[0] cc[1] cc[2]
+eqclass[3]: cd[0] cd[1] cd[2]
+Join graph edges:
+term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
+term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
+term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
+term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
+term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
+term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
+term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
+term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
+Query plan:
+hash-join (inner join)
+    edge:  term[0] AND term[2] AND term[4] AND term[6]
+    outer: idx-join (inner join)
+               outer: sscan
+                          class: a node[0]
+                          cost:  11 card 2000
+               inner: iscan
+                          class: c node[2]
+                          index: i1 term[1] AND term[3] AND term[5]
+                          sargs: term[7]
+                          cost:  3 card 2000
+               sargs: term[7]
+               cost:  1223 card 1
+    inner: sscan
+               class: b node[1]
+               cost:  11 card 2000
+    cost:  1334 card 1
+Query stmt:
+select /*+ USE_NL(c) USE_HASH(a, b) */ count(*) from ta a, tb b, tc c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+===================================================
+trace    
+
+Query Plan:
+  HASH JOIN (inner join)
+    NESTED LOOPS (inner join)
+      TABLE SCAN (a)
+      INDEX SCAN (c.i?) (key range: a.ca=c.cakey range: a.cb=c.cbkey range: a.cc=c.cc)
+    TABLE SCAN (b)
+
+  rewritten query: select /*+ USE_NL(c) USE_HASH(a, b) */ count(*) from [dba.ta] a, [dba.tb] b, [dba.tc] c where a.ca=b.ca and a.cb=b.cb and a.cc=b.cc and a.cd=b.cd and a.ca=c.ca and a.cb=c.cb and a.cc=c.cc and a.cd=c.cd
+
+Trace Statistics:
+  SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+    SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+      HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+        BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: file)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.tb), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+        PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
+          SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
+            SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
+              SCAN (index: dba.tc.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+     
+
+===================================================
+0
+===================================================
+0
+===================================================
+0
+===================================================
+0
