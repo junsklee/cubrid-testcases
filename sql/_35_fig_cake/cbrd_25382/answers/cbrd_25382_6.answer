@@ -51,29 +51,29 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: hash-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     cost:  1 card 8
-                          cost:  3 card 8
+                                     class: b node[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  5 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               cost:  1 card 8
-    cost:  7 card 8
+               class: d node[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED USE_HASH */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED USE_HASH */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -122,32 +122,32 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  217 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  326 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED USE_HASH(a) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED USE_HASH(a) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -196,31 +196,31 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: hash-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     cost:  1 card 8
-                          cost:  3 card 8
+                                     class: b node[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  219 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED USE_HASH(b) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED USE_HASH(b) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     null     null     null     null     
@@ -269,31 +269,31 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  219 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED USE_HASH(c) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED USE_HASH(c) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     null     null     null     null     
@@ -342,31 +342,31 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  217 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               cost:  1 card 8
-    cost:  219 card 8
+               class: d node[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED USE_HASH(d) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED USE_HASH(d) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     null     null     null     null     
@@ -415,32 +415,32 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  217 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  326 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH USE_HASH */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH USE_HASH */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -489,29 +489,29 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: hash-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     cost:  1 card 8
-                          cost:  3 card 8
+                                     class: b node[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  5 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               cost:  1 card 8
-    cost:  7 card 8
+               class: d node[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(a) USE_HASH */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(a) USE_HASH */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -560,30 +560,30 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               cost:  1 card 8
-    cost:  113 card 8
+               class: d node[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(b) USE_HASH */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(b) USE_HASH */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -632,30 +632,30 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: hash-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     cost:  1 card 8
-                          cost:  3 card 8
+                                     class: b node[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               cost:  1 card 8
-    cost:  113 card 8
+               class: d node[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(c) USE_HASH */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(c) USE_HASH */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -704,30 +704,30 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: hash-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     cost:  1 card 8
-                          cost:  3 card 8
+                                     class: b node[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  5 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  113 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(d) USE_HASH */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(d) USE_HASH */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -776,31 +776,31 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: hash-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     cost:  1 card 8
-                          cost:  3 card 8
+                                     class: b node[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  219 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(c, d) USE_HASH(a, b) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(c, d) USE_HASH(a, b) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -849,31 +849,31 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  219 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(b, d) USE_HASH(a, c) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(b, d) USE_HASH(a, c) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -922,31 +922,31 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: hash-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          cost:  1 card 8
-               cost:  111 card 8
+                          class: c node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  219 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(b, d) USE_HASH(a, b, c) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(b, d) USE_HASH(a, b, c) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     1     1     1     1     
@@ -995,32 +995,32 @@ Join graph terms:
 term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
-    edge:  term[2]
+    edge:  term[?]
     outer: nl-join (inner join)
-               edge:  term[1]
+               edge:  term[?]
                outer: nl-join (inner join)
-                          edge:  term[0]
+                          edge:  term[?]
                           outer: sscan
-                                     class: a node[0]
-                                     sargs: term[3]
-                                     cost:  1 card 8
+                                     class: a node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
                           inner: sscan
-                                     class: b node[1]
-                                     sargs: term[0]
-                                     cost:  1 card 8
-                          cost:  109 card 8
+                                     class: b node[?]
+                                     sargs: term[?]
+                                     cost:  ? card ?
+                          cost:  ? card ?
                inner: sscan
-                          class: c node[2]
-                          sargs: term[1]
-                          cost:  1 card 8
-               cost:  217 card 8
+                          class: c node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
     inner: sscan
-               class: d node[3]
-               sargs: term[2]
-               cost:  1 card 8
-    cost:  326 card 8
+               class: d node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
 Query stmt:
-select /*+ ORDERED NO_USE_HASH(b, c, d) USE_HASH(b, c, d) */ d,class d,c,class c,b,class b, ?:1  as [b.flag], ?:2  as [c.flag], ?:3  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:0 
+select /*+ ORDERED NO_USE_HASH(b, c, d) USE_HASH(b, c, d) */ d,class d,c,class c,b,class b, ?:?  as [b.flag], ?:?  as [c.flag], ?:?  as [d.flag] from ta a, tb b, tc c, td d where a.ca=b.ca and b.ca=c.ca and c.ca=d.ca and a.flag= ?:? 
 ===================================================
 a_ca    a_flag    b_flag    c_flag    d_flag    
 1     null     null     null     null     
