@@ -206,10 +206,10 @@ t_FLOAT_NUMERIC. This scenario is a success.
 null     
 
 
-select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = -3.402823448181152
-param_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = 3.402800083160400
-select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = -3.402822971343994
-select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = 3.402823448181152
+select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = -3.402823000000000
+param_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = 3.402800000000000
+select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = -3.402822000000000
+select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = 3.402823000000000
 ===================================================
 0
 

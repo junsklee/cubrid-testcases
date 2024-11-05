@@ -1,31 +1,83 @@
 ===================================================
-'This test is a normal run case ( t_compile_error_null, string )'    
-This test is a normal run case ( t_compile_error_null, string )     
+'This test is a normal run case. ( t_compile_error_null, string )'    
+This test is a normal run case. ( t_compile_error_null, string )     
 
 
 ===================================================
 0
 
 ===================================================
-'Bug fix on CBRD-25272 ( t_compile_error_null, string )'    
-Bug fix on CBRD-25272 ( t_compile_error_null, string )     
+    
+null     
+
+
+***************************************
+null = NULL
+right_string_null = NULL
+***************************************
+
+===================================================
+0
+
+===================================================
+'This test is a normal run case. ( t_compile_error_null, string )'    
+This test is a normal run case. ( t_compile_error_null, string )     
 
 
 ===================================================
 0
 
 ===================================================
-'Bug fix on CBRD-25272 ( t_compile_error_null, string )'    
-Bug fix on CBRD-25272 ( t_compile_error_null, string )     
+    
+null     
+
+
+***************************************
+null = NULL
+right_string_null = NULL
+***************************************
+
+===================================================
+0
+
+===================================================
+'This test is a normal run case. ( t_compile_error_null, string )'    
+This test is a normal run case. ( t_compile_error_null, string )     
 
 
 ===================================================
 0
 
 ===================================================
-'Bug fix on CBRD-25272 ( t_compile_error_null, string )'    
-Bug fix on CBRD-25272 ( t_compile_error_null, string )     
+    
+null     
 
+
+***************************************
+null = NULL
+right_string_null = NULL
+***************************************
+
+===================================================
+0
+
+===================================================
+'This test is a normal run case. ( t_compile_error_null, string )'    
+This test is a normal run case. ( t_compile_error_null, string )     
+
+
+===================================================
+0
+
+===================================================
+    
+null     
+
+
+***************************************
+null = NULL
+right_string_null = NULL
+***************************************
 
 ===================================================
 0

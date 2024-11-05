@@ -60,33 +60,85 @@ In line 59, column 48
 Stored procedure compile error: operands do not have compatible types
 
 ===================================================
-'This test is a normal run case ( t_compile_error_string, null )'    
-This test is a normal run case ( t_compile_error_string, null )     
+'This test is a normal run case. ( t_compile_error_string, null )'    
+This test is a normal run case. ( t_compile_error_string, null )     
 
 
 ===================================================
 0
 
 ===================================================
-'Bug fix on CBRD-25272 ( t_compile_error_string, null )'    
-Bug fix on CBRD-25272 ( t_compile_error_string, null )     
+    
+null     
+
+
+***************************************
+left_string_null = NULL
+null = NULL
+***************************************
+
+===================================================
+0
+
+===================================================
+'This test is a normal run case. ( t_compile_error_string, null )'    
+This test is a normal run case. ( t_compile_error_string, null )     
 
 
 ===================================================
 0
 
 ===================================================
-'Bug fix on CBRD-25272 ( t_compile_error_string, null )'    
-Bug fix on CBRD-25272 ( t_compile_error_string, null )     
+    
+null     
+
+
+***************************************
+left_string_null = NULL
+null = NULL
+***************************************
+
+===================================================
+0
+
+===================================================
+'This test is a normal run case. ( t_compile_error_string, null )'    
+This test is a normal run case. ( t_compile_error_string, null )     
 
 
 ===================================================
 0
 
 ===================================================
-'Bug fix on CBRD-25272 ( t_compile_error_string, null )'    
-Bug fix on CBRD-25272 ( t_compile_error_string, null )     
+    
+null     
 
+
+***************************************
+left_string_null = NULL
+null = NULL
+***************************************
+
+===================================================
+0
+
+===================================================
+'This test is a normal run case. ( t_compile_error_string, null )'    
+This test is a normal run case. ( t_compile_error_string, null )     
+
+
+===================================================
+0
+
+===================================================
+    
+null     
+
+
+***************************************
+left_string_null = NULL
+null = NULL
+***************************************
 
 ===================================================
 0

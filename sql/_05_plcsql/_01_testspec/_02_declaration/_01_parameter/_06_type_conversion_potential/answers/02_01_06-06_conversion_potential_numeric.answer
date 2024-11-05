@@ -120,7 +120,7 @@ null
 
 
 float to numeric 
-param value = 3677.344970703125
+param value = 3677.344
 ===================================================
 0
 
@@ -138,7 +138,7 @@ null
 
 
 double to numeric 
-param value = 56789.123399999996763654053211212158203125
+param value = 56789.1234
 ===================================================
 0
 
@@ -152,7 +152,7 @@ An error occurs. ( t_date, numeric )
 
 ===================================================
 Error:-889
-Stored procedure execute error: com.cubrid.jsp.exception.TypeMismatchException
+Stored procedure execute error: 
 
 ===================================================
 0
@@ -167,7 +167,7 @@ An error occurs. ( t_time, numeric )
 
 ===================================================
 Error:-889
-Stored procedure execute error: com.cubrid.jsp.exception.TypeMismatchException
+Stored procedure execute error: 
 
 ===================================================
 0
@@ -182,7 +182,7 @@ An error occurs. ( t_datetime, numeric )
 
 ===================================================
 Error:-889
-Stored procedure execute error: com.cubrid.jsp.exception.TypeMismatchException
+Stored procedure execute error: 
 
 ===================================================
 0
@@ -197,7 +197,7 @@ An error occurs. ( t_timestamp, numeric )
 
 ===================================================
 Error:-889
-Stored procedure execute error: com.cubrid.jsp.exception.TypeMismatchException
+Stored procedure execute error: 
 
 ===================================================
 0

@@ -206,8 +206,8 @@ t_FLOAT_NUMERIC. This scenario is a success.
 null     
 
 
-param_type = FLOAT, variables_type = NUMERIC(38,15), param=>variables = 1677.217041015625000
-variables=>variables = 1677.217041015625000
+param_type = FLOAT, variables_type = NUMERIC(38,15), param=>variables = 1677.217000000000000
+variables=>variables = 1677.217000000000000
 ===================================================
 0
 
@@ -232,8 +232,8 @@ variables=>variables = 0.123500000000000
 null     
 
 
-param_type = NUMERIC, variables_type = NUMERIC(38,15), param=>variables = 0.000000000000000
-variables=>variables = 0.000000000000000
+param_type = NUMERIC, variables_type = NUMERIC(38,15), param=>variables = 0E-15
+variables=>variables = 0E-15
 ===================================================
 0
 

@@ -205,8 +205,8 @@ t_FLOAT_NUMERIC. This scenario is a success.
 null     
 
 
-select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = -3.402823448181152
-select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = 3.402823448181152
+select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = -3.402823000000000
+select_type = FLOAT, variables_type = NUMERIC(38,15), SELECT column=>INTO variables = 3.402823000000000
 ===================================================
 0
 

@@ -211,7 +211,7 @@ t_FLOAT_NUMERIC. This scenario is a success.
 
 ===================================================
 t_FLOAT_NUMERIC('FLOAT', 'NUMERIC(38,15)',  cast(16777.217 as float))    typeof(t_FLOAT_NUMERIC('FLOAT', 'NUMERIC(38,15)',  cast(16777.217 as float)))    
-16777     numeric (14, 9)     
+16777.21     numeric (7, 2)     
 
 
 variables_type = FLOAT, return_type = NUMERIC(38,15), param_value(variable value) = 1.677722e+04

@@ -9,7 +9,7 @@ undersigned smallint
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 12, column 15) not fit in a SHORT: -32769
+  (line 12, column 15) data overflow on data type SHORT: -32769
 
 -32768 - 1
 ===================================================
@@ -21,7 +21,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 15) not fit in a SHORT: -32769
+  (line 6, column 15) data overflow on data type SHORT: -32769
 
 -32768 + (-1)
 ===================================================
@@ -33,7 +33,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 15) not fit in a SHORT: -65536
+  (line 6, column 15) data overflow on data type SHORT: -65536
 
 -32768 * 2
 ===================================================
@@ -45,7 +45,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 15) not fit in a SHORT: -32769
+  (line 6, column 15) data overflow on data type SHORT: -32769
 
 -65538 / 2
 ===================================================
@@ -98,7 +98,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in an INTEGER: -2147483649
+  (line 6, column 14) data overflow on data type INTEGER: -2147483649
 
 -4294967298 / 2
 ===================================================
@@ -151,7 +151,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 15) not fit in a BIGINT: -9223372036854775809.000000000
+  (line 6, column 15) data overflow on data type BIGINT: -9223372036854775809.000000000
 
 -18446744073709551618 / 2
 ===================================================
@@ -168,7 +168,7 @@ smallint
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in a SHORT: 32768
+  (line 6, column 14) data overflow on data type SHORT: 32768
 
 32769 - 1
 ===================================================
@@ -180,7 +180,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in a SHORT: 32768
+  (line 6, column 14) data overflow on data type SHORT: 32768
 
 32767 + 1
 ===================================================
@@ -192,7 +192,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in a SHORT: 65534
+  (line 6, column 14) data overflow on data type SHORT: 65534
 
 32767 * 2
 ===================================================
@@ -204,7 +204,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in a SHORT: 32769
+  (line 6, column 14) data overflow on data type SHORT: 32769
 
 65538 / 2
 ===================================================
@@ -221,7 +221,7 @@ int
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 13) not fit in an INTEGER: 2147483648
+  (line 6, column 13) data overflow on data type INTEGER: 2147483648
 
 2147483649 - 1
 ===================================================
@@ -257,7 +257,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 13) not fit in an INTEGER: 2147483648
+  (line 6, column 13) data overflow on data type INTEGER: 2147483648
 
 4294967296 / 2
 ===================================================
@@ -274,7 +274,7 @@ bigint
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in a BIGINT: 9223372036854775808
+  (line 6, column 14) data overflow on data type BIGINT: 9223372036854775808
 
 9223372036854775809 - 1
 ===================================================
@@ -310,7 +310,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 6, column 14) not fit in a BIGINT: 9223372036854775809.500000000
+  (line 6, column 14) data overflow on data type BIGINT: 9223372036854775809.500000000
 
 18446744073709551619 / 2
 ===================================================
