@@ -29,7 +29,7 @@ update statistics on ta, tb, tc, td with fullscan;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. left outer join (ansi)', ' ####');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from
@@ -45,7 +45,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. left outer join (non-ansi)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from
@@ -61,7 +61,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. left outer join + during join terms');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from
@@ -77,7 +77,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. left outer join (ansi) + after join terms');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from
@@ -96,7 +96,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. left outer join (non-ansi) + after join terms');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from
@@ -112,7 +112,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. right outer join (ansi)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   d.ca as d_ca, d.flag as d_flag,
   c.ca as c_ca, c.flag as c_flag,
@@ -131,7 +131,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. right outer join (non-ansi)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   d.ca as d_ca, d.flag as d_flag,
   c.ca as c_ca, c.flag as c_flag,
@@ -150,7 +150,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. right outer join + during join terms');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   d.ca as d_ca, d.flag as d_flag,
   c.ca as c_ca, c.flag as c_flag,
@@ -167,7 +167,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. right outer join (ansi) + after join terms');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   d.ca as d_ca, c.ca as c_ca, b.ca as b_ca, a.ca as a_ca
 from
@@ -186,7 +186,7 @@ order by
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. right outer join (non-ansi) + after join terms');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   d.ca as d_ca, c.ca as c_ca, b.ca as b_ca, a.ca as a_ca
 from

@@ -26,7 +26,7 @@ update statistics on ta, tb, tc with fullscan;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -42,7 +42,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile + use_hash');
 
---@fullplan
+--@queryplan
 select /*+ recompile */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -58,7 +58,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash + use_hash');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -74,7 +74,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile no_use_hash + use_hash');
 
---@fullplan
+--@queryplan
 select /*+ recompile no_use_hash */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -90,7 +90,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(ab,c) + use_hash(a,b)');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash(ab,c) */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -106,7 +106,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(ab) + no_use_hash(a)');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash(ab) */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -122,7 +122,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile no_use_hash(ab) + use_hash(a)');
 
---@fullplan
+--@queryplan
 select /*+ recompile no_use_hash(ab) */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -138,7 +138,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile no_use_hash(a,b,c) + use_hash(a,b,c)');
 
---@fullplan
+--@queryplan
 select /*+ recompile no_use_hash(a,b,c) */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from
@@ -154,7 +154,7 @@ where ab.b_ca = c.ca and c.flag = 1;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(a,b,c) + no_use_hash(a,b,c)');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash(a,b,c) */
   ab.a_ca as a_ca, ab.b_ca as b_ca, c.ca as c_ca
 from

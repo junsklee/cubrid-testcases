@@ -40,7 +40,7 @@ set trace on;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. build input: small tuple count');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   count (*)
 from ta a, tb b, tc c, td d
@@ -57,7 +57,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. build input: small tuple count + ordered');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   count (*)
 from ta a, tb b, tc c, td d
@@ -74,7 +74,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. build input: int vs bigint -> int or bigint (page: int == bigint)');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   count (*)
 from ta a, t_bigint b
@@ -86,7 +86,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. build input: int vs numeric -> int (page: int < numeric)');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   count (*)
 from ta a, t_numeric b
@@ -100,7 +100,7 @@ evaluate concat ('####', lpad (@i, 3), '. cost: in_memory, hybrid < file, build_
 
 set system parameters 'max_hash_list_scan_size=512k';
 
---@fullplan
+--@queryplan
 select /*+  recompile use_hash(a,b) use_nl(c) */
   count (*)
 from ta a, tb b, tc c
@@ -115,7 +115,7 @@ evaluate concat ('####', lpad (@i, 3), '. cost: in_memory, hybrid < file, build_
 
 set system parameters 'max_hash_list_scan_size=128k';
 
---@fullplan
+--@queryplan
 select /*+  recompile use_hash(a,b) use_nl(c) */
   count (*)
 from ta a, tb b, tc c
@@ -130,7 +130,7 @@ evaluate concat ('####', lpad (@i, 3), '. cost: in_memory, hybrid < file, build_
 
 set system parameters 'max_hash_list_scan_size=64k';
 
---@fullplan
+--@queryplan
 select /*+  recompile ordered use_hash(a,b) use_nl(c) */
   count (*)
 from ta a, tb b, tc c
@@ -140,7 +140,7 @@ where a.ca = b.ca and a.cb = b.cb and a.cc = b.cc and a.cd = b.cd
 show trace;
 --select trace_stats ();
 
---@fullplan
+--@queryplan
 select /*+  recompile use_hash(a,b) use_nl(c) */
   count (*)
 from ta a, tb b, tc c

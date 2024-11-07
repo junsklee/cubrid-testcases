@@ -26,29 +26,6 @@
 4
 ===================================================
 12
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -97,29 +74,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 1
 ===================================================
 3
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -171,29 +125,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 1
 ===================================================
 3
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -244,29 +175,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 1
 ===================================================
 3
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -317,29 +225,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 1
 ===================================================
 3
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -390,29 +275,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 8
 ===================================================
 24
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -464,29 +326,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 5
 ===================================================
 15
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -535,29 +374,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 5
 ===================================================
 15
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -607,29 +423,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 5
 ===================================================
 15
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -679,29 +472,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 5
 ===================================================
 15
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -751,29 +521,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 4
 ===================================================
 12
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -824,29 +571,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 4
 ===================================================
 12
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -897,29 +621,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 5
 ===================================================
 15
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -970,29 +671,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 6
 ===================================================
 18
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(8/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -1044,30 +722,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 4
 ===================================================
 16
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 2) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-node[2]: dba.tc c(8/1) (loc 2)
-node[3]: dba.td d(8/1) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[2]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
-Join graph partitions:
-partition[0]: (nodes 0 1 2) (edges 0 1) (dependencies empty)
-partition[1]: (nodes 3) (edges empty) (dependencies empty)
 Query plan:
 nl-join (cross join)
     outer: hash-join (inner join)
@@ -1115,25 +769,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 3
 ===================================================
 14
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 2) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-node[2]: dba.tc c(8/1) (loc 2)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[2]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -1153,10 +788,6 @@ hash-join (inner join)
     cost:  ? card ?
 Query stmt:
 select /*+ USE_HASH(a, b, c) */ c,class c,b,class b from ta a, tb b, tc c where a.ca=b.ca and b.ca=c.ca and a.flag= ?:? 
-Join graph segments (f indicates final):
-seg[0]: [0] (f)
-Join graph nodes:
-node[0]: dba.td d(8/1) (loc 0)
 Query plan:
 sscan
     class: d node[?]
@@ -1186,29 +817,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 4
 ===================================================
 20
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: [3] (f)
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 1) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-node[2]: dba.tc c(8/1) (loc 2)
-node[3]: dba.td d(8/1) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[1]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
-Join graph partitions:
-partition[0]: (nodes 0 1) (edges 0) (dependencies empty)
-partition[1]: (nodes 2) (edges empty) (dependencies empty)
-partition[2]: (nodes 3) (edges empty) (dependencies empty)
 Query plan:
 nl-join (cross join)
     outer: nl-join (cross join)
@@ -1256,21 +864,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 2
 ===================================================
 18
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 1) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[1]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 nl-join (inner join)
     edge:  term[?]
@@ -1285,20 +878,12 @@ nl-join (inner join)
     cost:  ? card ?
 Query stmt:
 select /*+ NO_USE_HASH(a, b) */ b,class b from ta a, tb b where a.ca=b.ca and a.flag= ?:? 
-Join graph segments (f indicates final):
-seg[0]: [0] (f)
-Join graph nodes:
-node[0]: dba.tc c(8/1) (loc 0)
 Query plan:
 sscan
     class: c node[?]
     cost:  ? card ?
 Query stmt:
 select /*+ NO_USE_HASH */ c,class c from tc c
-Join graph segments (f indicates final):
-seg[0]: [0] (f)
-Join graph nodes:
-node[0]: dba.td d(8/1) (loc 0)
 Query plan:
 sscan
     class: d node[?]
@@ -1328,26 +913,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 3
 ===================================================
 19
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 1) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-node[2]: dba.tc c(8/1) (loc 2)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[1]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
-Join graph partitions:
-partition[0]: (nodes 0 1) (edges 0) (dependencies empty)
-partition[1]: (nodes 2) (edges empty) (dependencies empty)
 Query plan:
 nl-join (cross join)
     outer: hash-join (inner join)
@@ -1366,10 +931,6 @@ nl-join (cross join)
     cost:  ? card ?
 Query stmt:
 select /*+ NO_USE_HASH(b) USE_HASH(a, c) */ c,class c,b,class b from ta a, tb b, tc c where a.ca=b.ca and a.flag= ?:? 
-Join graph segments (f indicates final):
-seg[0]: [0] (f)
-Join graph nodes:
-node[0]: dba.td d(8/1) (loc 0)
 Query plan:
 sscan
     class: d node[?]
@@ -1399,32 +960,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 2
 ===================================================
 18
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 2) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-node[2]: dba.tc c(8/1) (loc 2)
-node[3]: dba.td d(8/1) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1]
-eqclass[1]: ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[2]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
-Join graph partitions:
-partition[0]: (nodes 0 1) (edges 0) (dependencies empty)
-partition[1]: (nodes 2 3) (edges 1) (dependencies empty)
 Query plan:
 nl-join (cross join)
     outer: hash-join (inner join)
@@ -1476,32 +1011,6 @@ a_ca    a_flag    b_ca    c_ca    d_ca
 3
 ===================================================
 7
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: flag[0]
-seg[3]: [1] (f)
-seg[4]: ca[1]
-seg[5]: [2] (f)
-seg[6]: ca[2]
-seg[7]: [3] (f)
-seg[8]: ca[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 3) (loc 0)
-node[1]: dba.tb b(8/1) (loc 1)
-node[2]: dba.tc c(8/1) (loc 2)
-node[3]: dba.td d(8/1) (sargs 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-Join graph terms:
-term[2]: d.ca=8 (sel ?) (sarg term) (not-join eligible) (loc 0)
-term[3]: a.flag=1 (sel 1) (sarg term) (not-join eligible) (loc 0)
-Join graph partitions:
-partition[0]: (nodes 0 1 2) (edges 0 1) (dependencies empty)
-partition[1]: (nodes 3) (edges empty) (dependencies empty)
 Query plan:
 nl-join (cross join)
     outer: hash-join (inner join)

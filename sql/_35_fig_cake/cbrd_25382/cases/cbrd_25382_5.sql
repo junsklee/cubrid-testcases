@@ -38,7 +38,7 @@ set trace on;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. empty outer');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.cd as a_cd, b.cd as b_cd
 from ta a, tb b
@@ -51,7 +51,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. empty inner');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.cd as a_cd, b.cd as b_cd
 from ta a, tb b
@@ -64,7 +64,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. empty inner + left outer join');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.cd as a_cd, b.cd as b_cd
 from ta a
@@ -78,7 +78,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. multiple tables');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   a.cd as a_cd, b.cd as b_cd, c.cd as c_cd, d.cd as d_cd
 from ta a, tb b, tc c, td d
@@ -95,7 +95,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. inline views');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   a.cd as a_cd, b.cd as b_cd
 from
@@ -110,7 +110,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. subqueries');
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   a.cd as a_cd, b.cd as b_cd,
   (select /*+ no_subquery_cache */ d.cd from td d where d.cd = b.cd and d.cd = b.cd) as d_cd
@@ -127,7 +127,7 @@ show trace;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. ctes (common table expressions)');
 
---@fullplan
+--@queryplan
 with cte as (
     select /*+ use_hash */
       a.ca as ca, a.cb as cb, a.cc as cc, a.cd as cd
@@ -148,7 +148,7 @@ evaluate concat ('####', lpad (@i, 3), '. json format output');
 
 set trace on output json;
 
---@fullplan
+--@queryplan
 select /*+ recompile use_hash */
   a.cd as a_cd, b.cd as b_cd
 from ta a, tb b

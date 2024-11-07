@@ -46,7 +46,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash');
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -60,7 +60,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a)');
 
 update ta a set a.flag = 1 where a.ca in (1);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(a) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -74,7 +74,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(b)');
 
 update ta a set a.flag = 1 where a.ca in (2);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(b) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -88,7 +88,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(c)');
 
 update ta a set a.flag = 1 where a.ca in (3);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(c) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -102,7 +102,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(d)');
 
 update ta a set a.flag = 1 where a.ca in (4);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(d) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -116,7 +116,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 5, 6, 7, 8);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash no_use_hash */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -130,7 +130,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 5);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash no_use_hash(a) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -144,7 +144,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 6);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash no_use_hash(b) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -158,7 +158,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 7);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash no_use_hash(c) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -172,7 +172,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 8);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash no_use_hash(d) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -186,7 +186,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,b) 
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 7, 8);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(a,b) no_use_hash(c,d) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -200,7 +200,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,c) 
 
 update ta a set a.flag = 1 where a.ca in (1, 3, 6, 8);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(a,c) no_use_hash(b,d) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -214,7 +214,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,b,c
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 6, 8);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(a,b,c) no_use_hash(b,d) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1
@@ -228,7 +228,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(b,c,d
 
 update ta a set a.flag = 1 where a.ca in (2, 3, 4, 6, 7, 8);
 
---@fullplan
+--@queryplan
 update /*+ recompile ordered use_hash(b,c,d) no_use_hash(b,c,d) */
   ta a, tb b, tc c, td d
 set b.flag = 1, c.flag = 1, d.flag = 1

@@ -53,7 +53,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash');
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -67,7 +67,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a)');
 
 update ta a set a.flag = 1 where a.ca in (1);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(a) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -81,7 +81,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(b)');
 
 update ta a set a.flag = 1 where a.ca in (2);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(b) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -95,7 +95,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(c)');
 
 update ta a set a.flag = 1 where a.ca in (3);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(c) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -109,7 +109,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(d)');
 
 update ta a set a.flag = 1 where a.ca in (4);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(d) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -123,7 +123,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 5, 6, 7, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash no_use_hash */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -137,7 +137,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 5);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash no_use_hash(a) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -151,7 +151,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 6);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash no_use_hash(b) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -165,7 +165,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 7);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash no_use_hash(c) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -179,7 +179,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_us
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash no_use_hash(d) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -193,7 +193,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,b) 
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 7, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(a,b) no_use_hash(c,d) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -207,7 +207,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,c) 
 
 update ta a set a.flag = 1 where a.ca in (1, 3, 6, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(a,c) no_use_hash(b,d) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -221,7 +221,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,b,c
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 6, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(a,b,c) no_use_hash(b,d) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -235,7 +235,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(b,c,d
 
 update ta a set a.flag = 1 where a.ca in (2, 3, 4, 6, 7, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile ordered use_hash(b,c,d) no_use_hash(b,c,d) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -249,7 +249,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash');
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3, 4);
 
---@fullplan
+--@queryplan
 delete /*+ recompile use_hash */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -263,7 +263,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(a,b,c) -> spl
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3);
 
---@fullplan
+--@queryplan
 delete /*+ recompile use_hash(a,b,c) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -277,7 +277,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile no_use_hash');
 
 update ta a set a.flag = 1 where a.ca in (5, 6, 7, 8);
 
---@fullplan
+--@queryplan
 delete /*+ recompile no_use_hash */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -291,7 +291,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile no_use_hash(a,b) -> sp
 
 update ta a set a.flag = 1 where a.ca in (5, 6);
 
---@fullplan
+--@queryplan
 delete /*+ recompile no_use_hash(a,b) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -305,7 +305,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(a,c) no_use_h
 
 update ta a set a.flag = 1 where a.ca in (1, 3, 6);
 
---@fullplan
+--@queryplan
 delete /*+ recompile use_hash(a,c) no_use_hash(b) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -319,7 +319,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(a,b)');
 
 update ta a set a.flag = 1 where a.ca in (1, 2);
 
---@fullplan
+--@queryplan
 delete /*+ recompile use_hash(a,b) */
   b, c, d
 from ta a, tb b, tc c, td d
@@ -333,7 +333,7 @@ evaluate concat ('####', lpad (@i, 3), '. hint: recompile use_hash(a,b,c)');
 
 update ta a set a.flag = 1 where a.ca in (1, 2, 3);
 
---@fullplan
+--@queryplan
 delete /*+ recompile use_hash(a,b,c) */
   b, c, d
 from ta a, tb b, tc c, td d

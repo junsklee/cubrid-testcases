@@ -29,35 +29,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     null     null     
 4     4     4     null     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0]
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 5) (loc 0)
-node[1]: dba.tb b(6/1) (sargs 6) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(6/1) (sargs 4) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(6/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
-term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
-term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
-Join graph terms:
-term[3]: d.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 3)
-term[4]: c.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 2)
-term[5]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
-term[6]: b.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 1)
 Query plan:
 temp(order by)
     subplan: hash-join (left outer join)
@@ -102,35 +73,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     null     null     
 4     4     4     null     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0]
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 5) (loc 0)
-node[1]: dba.tb b(6/1) (sargs 6) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(6/1) (sargs 4) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(6/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
-term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
-Join graph terms:
-term[3]: d.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 3)
-term[4]: c.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 2)
-term[5]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
-term[6]: b.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 1)
 Query plan:
 temp(order by)
     subplan: hash-join (left outer join)
@@ -175,37 +117,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     null     null     
 4     4     4     null     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0] (f)
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 7) (loc 0)
-node[1]: dba.tb b(6/1) (sargs 8) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(6/1) (sargs 6) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(6/1) (sargs 4) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
-term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
-term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
-Join graph terms:
-term[3]: b.flag=1 (sel ?) (during join term) (not-join eligible) (loc 2)
-term[4]: d.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 3)
-term[5]: c.flag=1 (sel ?) (during join term) (not-join eligible) (loc 3)
-term[6]: c.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 2)
-term[7]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
-term[8]: b.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 1)
 Query plan:
 temp(order by)
     subplan: hash-join (left outer join)
@@ -252,35 +163,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     null     null     
 4     4     4     null     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0]
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 6) (loc 0)
-node[1]: dba.tb b(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(6/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: c.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
-term[1]: d.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
-term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
-Join graph terms:
-term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[4]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[5]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (left outer join)
@@ -323,35 +205,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     null     null     
 4     4     4     null     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0]
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.ta a(8/1) (sargs 6) (loc 0)
-node[1]: dba.tb b(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(6/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: b.ca=c.ca (sel ?) (join term) (mergeable) (left-join) (loc 2)
-term[1]: c.ca=d.ca (sel ?) (join term) (mergeable) (left-join) (loc 3)
-term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (left-join) (loc 1)
-Join graph terms:
-term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[4]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[5]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (left outer join)
@@ -405,32 +258,6 @@ null     null     4     1     4     0     4
 null     null     4     0     4     1     4     
 null     null     4     1     4     1     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0] (f)
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1] (f)
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2] (f)
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.td d(6/1) (loc 0)
-node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.ta a(8/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
-term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
-Join graph terms:
-term[3]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (right outer join)
@@ -483,32 +310,6 @@ null     null     4     1     4     0     4
 null     null     4     0     4     1     4     
 null     null     4     1     4     1     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0] (f)
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1] (f)
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2] (f)
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.td d(6/1) (loc 0)
-node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.ta a(8/1) (sargs 3) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
-term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
-term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
-Join graph terms:
-term[3]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (right outer join)
@@ -560,34 +361,6 @@ null     null     null     null     4     0     4     1
 null     null     4     0     4     1     4     1     
 null     null     4     1     4     1     4     1     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0] (f)
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1] (f)
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2] (f)
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3] (f)
-Join graph nodes:
-node[0]: dba.td d(6/1) (loc 0)
-node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.ta a(8/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
-term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
-Join graph terms:
-term[3]: a.flag=1 (sel ?) (during join term) (not-join eligible) (loc 3)
-term[4]: b.flag=1 (sel ?) (during join term) (not-join eligible) (loc 2)
-term[5]: c.flag=1 (sel ?) (during join term) (not-join eligible) (loc 1)
 Query plan:
 temp(order by)
     subplan: hash-join (right outer join)
@@ -631,35 +404,6 @@ null     null     null     2
 null     null     3     3     
 null     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0]
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.td d(6/1) (loc 0)
-node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.ta a(8/1) (sargs 6) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: c.ca=d.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
-term[2]: a.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
-Join graph terms:
-term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[4]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[5]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (right outer join)
@@ -702,35 +446,6 @@ null     null     null     2
 null     null     3     3     
 null     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: flag[0]
-seg[3]: [1]
-seg[4]: ca[1] (f)
-seg[5]: flag[1]
-seg[6]: [2]
-seg[7]: ca[2] (f)
-seg[8]: flag[2]
-seg[9]: [3]
-seg[10]: ca[3] (f)
-seg[11]: flag[3]
-Join graph nodes:
-node[0]: dba.td d(6/1) (loc 0)
-node[1]: dba.tc c(6/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tb b(6/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.ta a(8/1) (sargs 6) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: d.ca=c.ca (sel ?) (join term) (mergeable) (right-join) (loc 1)
-term[1]: c.ca=b.ca (sel ?) (join term) (mergeable) (right-join) (loc 2)
-term[2]: b.ca=a.ca (sel ?) (join term) (mergeable) (right-join) (loc 3)
-Join graph terms:
-term[3]: nvl(c.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[4]: nvl(b.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[5]: nvl(d.flag, 0)=0 (sel ?) (rank 3) (after join term) (not-join eligible) (loc 0)
-term[6]: a.flag=1 (sel ?) (sarg term) (not-join eligible) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (right outer join)

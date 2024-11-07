@@ -27,26 +27,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -87,26 +67,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -150,26 +110,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -212,26 +152,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -274,26 +194,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -336,26 +236,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -399,26 +279,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -459,26 +319,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -520,26 +360,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -581,26 +401,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -642,26 +442,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -704,26 +484,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -766,26 +526,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)
@@ -828,26 +568,6 @@ a_ca    b_ca    c_ca    d_ca
 3     3     3     3     
 4     4     4     4     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: [1]
-seg[3]: ca[1] (f)
-seg[4]: [2]
-seg[5]: ca[2] (f)
-seg[6]: [3]
-seg[7]: ca[3] (f)
-Join graph nodes:
-node[0]: dba.ta a(4/1) (loc 0)
-node[1]: dba.tb b(4/1) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(4/1) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(4/1) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2] ca[3]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: b.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[2]: c.ca=d.ca (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: nl-join (inner join)

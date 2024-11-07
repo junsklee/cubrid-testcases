@@ -31,21 +31,6 @@
 ===================================================
 a_cd    b_cd    
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0] (f)
-seg[2]: ca[0]
-seg[3]: [1]
-seg[4]: cd[1] (f)
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (sargs 1) (loc 0)
-node[1]: dba.tb b(2000/6) (outer-dep-set 0) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-Join graph terms:
-term[1]: a.ca=-1 (sel ?) (sarg term) (not-join eligible) (indexable ca[0]) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -94,21 +79,6 @@ Trace Statistics:
 ===================================================
 a_cd    b_cd    
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0] (f)
-seg[2]: [1]
-seg[3]: cd[1] (f)
-seg[4]: ca[1]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 1) (outer-dep-set 0) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-Join graph terms:
-term[1]: b.ca=-1 (sel ?) (sarg term) (not-join eligible) (indexable ca[1]) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -158,21 +128,6 @@ Trace Statistics:
 a_cd    b_cd    
 2000     null     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0] (f)
-seg[2]: [1]
-seg[3]: cd[1] (f)
-seg[4]: ca[1]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 1) (outer-dep-set 0) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: b.cd=a.cd (sel ?) (join term) (mergeable) (left-join) (indexable cd[1] cd[0]) (loc 1)
-Join graph terms:
-term[1]: b.ca=-1 (sel ?) (sarg term) (not-join eligible) (indexable ca[1]) (loc 1)
 Query plan:
 temp(order by)
     subplan: hash-join (left outer join)
@@ -224,35 +179,6 @@ a_cd    b_cd    c_cd    d_cd
 1     1     1     1     
 1001     1001     1001     1001     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0] (f)
-seg[2]: cc[0]
-seg[3]: [1]
-seg[4]: cd[1] (f)
-seg[5]: cc[1]
-seg[6]: [2]
-seg[7]: cd[2] (f)
-seg[8]: cc[2]
-seg[9]: [3]
-seg[10]: cd[3] (f)
-seg[11]: cc[3]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (sargs 5) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 4) (loc 1)
-node[2]: dba.tc c(2000/6) (sargs 3) (loc 2)
-node[3]: dba.td d(2000/6) (sargs 6) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1] cd[2] cd[3]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[1]: b.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[1] cd[2]) (loc 0)
-term[2]: c.cd=d.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[2] cd[3]) (loc 0)
-Join graph terms:
-term[3]: c.cc=1 (sel ?) (sarg term) (not-join eligible) (indexable cc[2]) (loc 0)
-term[4]: b.cc=1 (sel ?) (sarg term) (not-join eligible) (indexable cc[1]) (loc 0)
-term[5]: a.cc=1 (sel ?) (sarg term) (not-join eligible) (indexable cc[0]) (loc 0)
-term[6]: d.cc=1 (sel ?) (sarg term) (not-join eligible) (indexable cc[3]) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -337,16 +263,6 @@ a_cd    b_cd
 2     2     
 1002     1002     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: cb[0] (f)
-seg[3]: cc[0] (f)
-seg[4]: cd[0] (f)
-Join graph nodes:
-node[0]: dba.ta dba.ta(2000/6) (sargs 0) (loc 0)
-Join graph terms:
-term[0]: [dba.ta].cc=2 (sel ?) (sarg term) (not-join eligible) (indexable cc[0]) (loc 0)
 Query plan:
 sscan
     class: ta node[?]
@@ -354,16 +270,6 @@ sscan
     cost:  ? card ?
 Query stmt:
 (select /*+ NO_MERGE */ ta.ca, ta.cb, ta.cc, ta.cd from ta ta where ta.cc= ?:? )
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: cb[0] (f)
-seg[3]: cc[0] (f)
-seg[4]: cd[0] (f)
-Join graph nodes:
-node[0]: dba.tb dba.tb(2000/6) (sargs 0) (loc 0)
-Join graph terms:
-term[0]: [dba.tb].cc=2 (sel ?) (sarg term) (not-join eligible) (indexable cc[0]) (loc 0)
 Query plan:
 sscan
     class: tb node[?]
@@ -371,22 +277,6 @@ sscan
     cost:  ? card ?
 Query stmt:
 (select /*+ NO_MERGE */ tb.ca, tb.cb, tb.cc, tb.cd from tb tb where tb.cc= ?:? )
-Join graph segments (f indicates final):
-seg[0]: ca[0]
-seg[1]: cb[0]
-seg[2]: cc[0]
-seg[3]: cd[0] (f)
-seg[4]: ca[1]
-seg[5]: cb[1]
-seg[6]: cc[1]
-seg[7]: cd[1] (f)
-Join graph nodes:
-node[0]: a(2/1) (loc 0)
-node[1]: b(2/1) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -451,14 +341,6 @@ a_cd    b_cd    d_cd
 3     3     3     
 1003     1003     1003     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0] (f)
-Join graph nodes:
-node[0]: dba.td d(2000/6) (sargs 0 1) (loc 0)
-Join graph terms:
-term[0]: d.cd=b.cd (sel ?) (sarg term) (not-join eligible) (indexable cd[0]) (loc 0)
-term[1]: d.cd=b.cd (sel ?) (sarg term) (not-join eligible) (indexable cd[0]) (loc 0)
 Query plan:
 iscan
     class: d node[?]
@@ -467,16 +349,6 @@ iscan
     cost:  ? card ?
 Query stmt:
 (select /*+ NO_SUBQUERY_CACHE */ d.cd from td d where d.cd=b.cd and d.cd=b.cd)
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: cb[0] (f)
-seg[3]: cc[0] (f)
-seg[4]: cd[0] (f)
-Join graph nodes:
-node[0]: dba.ta dba.ta(2000/6) (sargs 0) (loc 0)
-Join graph terms:
-term[0]: [dba.ta].cc=3 (sel ?) (sarg term) (not-join eligible) (indexable cc[0]) (loc 0)
 Query plan:
 sscan
     class: ta node[?]
@@ -484,16 +356,6 @@ sscan
     cost:  ? card ?
 Query stmt:
 (select /*+ NO_MERGE */ ta.ca, ta.cb, ta.cc, ta.cd from ta ta where ta.cc= ?:? )
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: cb[0] (f)
-seg[3]: cc[0] (f)
-seg[4]: cd[0] (f)
-Join graph nodes:
-node[0]: dba.tb dba.tb(2000/6) (sargs 0) (loc 0)
-Join graph terms:
-term[0]: [dba.tb].cc=3 (sel ?) (sarg term) (not-join eligible) (indexable cc[0]) (loc 0)
 Query plan:
 sscan
     class: tb node[?]
@@ -501,11 +363,6 @@ sscan
     cost:  ? card ?
 Query stmt:
 (select /*+ NO_MERGE */ tb.ca, tb.cb, tb.cc, tb.cd from tb tb where tb.cc= ?:? )
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-Join graph nodes:
-node[0]: dba.tc c(2000/6) (loc 0)
 Query plan:
 temp(distinct)
     subplan: sscan
@@ -514,26 +371,6 @@ temp(distinct)
     cost:  ? card ?
 Query stmt:
 (select distinct c.ca from tc c)
-Join graph segments (f indicates final):
-seg[0]: ca[0]
-seg[1]: cb[0]
-seg[2]: cc[0]
-seg[3]: cd[0] (f)
-seg[4]: ca[1]
-seg[5]: cb[1]
-seg[6]: cc[1]
-seg[7]: cd[1] (f)
-seg[8]: av_1[2]
-Join graph nodes:
-node[0]: a(2/1) (loc 0)
-node[1]: b(2/1) (loc 1)
-node[2]: av1861(2000/1) (loc -1)
-Join graph equivalence classes:
-eqclass[0]: ca[0] av_1[2]
-eqclass[1]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (loc 0)
-term[1]: a.ca=av1861.av_1 (sel ?) (join term) (mergeable) (inner-join) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -628,25 +465,6 @@ c_cd    d_cd
 4     4     
 1004     1004     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0] (f)
-seg[2]: cb[0] (f)
-seg[3]: cc[0] (f)
-seg[4]: cd[0] (f)
-seg[5]: [1]
-seg[6]: cd[1]
-seg[7]: ca[1]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (sargs 1) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 2) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-Join graph terms:
-term[1]: a.ca=4 (sel ?) (sarg term) (not-join eligible) (indexable ca[0]) (loc 0)
-term[2]: b.ca=4 (sel ?) (sarg term) (not-join eligible) (indexable ca[1]) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -661,24 +479,6 @@ hash-join (inner join)
     cost:  ? card ?
 Query stmt:
 select /*+ USE_HASH */ a.ca, a.cb, a.cc, a.cd from ta a, tb b where a.cd=b.cd and b.ca= ?:?  and a.ca= ?:? 
-Join graph segments (f indicates final):
-seg[0]: ca[0]
-seg[1]: cb[0]
-seg[2]: cc[0]
-seg[3]: cd[0] (f)
-seg[4]: [1]
-seg[5]: cd[1] (f)
-seg[6]: cc[1]
-Join graph nodes:
-node[0]: c(5/1) (sargs 1) (loc 0)
-node[1]: dba.td d(2000/6) (sargs 2) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: c.cd=d.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[1]) (loc 0)
-Join graph terms:
-term[1]: c.cc=4 (sel ?) (sarg term) (not-join eligible) (loc 0)
-term[2]: d.cc=4 (sel ?) (sarg term) (not-join eligible) (indexable cc[1]) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)
@@ -751,23 +551,6 @@ a_cd    b_cd
 5     5     
 1005     1005     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0] (f)
-seg[2]: cc[0]
-seg[3]: [1]
-seg[4]: cd[1] (f)
-seg[5]: cc[1]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (sargs 1) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 2) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-Join graph terms:
-term[1]: a.cc=5 (sel ?) (sarg term) (not-join eligible) (indexable cc[0]) (loc 0)
-term[2]: b.cc=5 (sel ?) (sarg term) (not-join eligible) (indexable cc[1]) (loc 0)
 Query plan:
 temp(order by)
     subplan: hash-join (inner join)

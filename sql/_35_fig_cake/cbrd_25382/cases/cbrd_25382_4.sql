@@ -32,7 +32,7 @@ update statistics on ta, tb, tc, td with fullscan;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -42,7 +42,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(a) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -52,7 +52,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(b)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(b) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -62,7 +62,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(c)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(c) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -72,7 +72,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(d)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(d) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -82,7 +82,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_use_hash');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash no_use_hash */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -92,7 +92,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_use_hash(a)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash no_use_hash(a) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -102,7 +102,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_use_hash(b)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash no_use_hash(b) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -112,7 +112,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_use_hash(c)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash no_use_hash(c) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -122,7 +122,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash no_use_hash(d)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash no_use_hash(d) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -132,7 +132,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,b) no_use_hash(c,d)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(a,b) no_use_hash(c,d) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -142,7 +142,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,c) no_use_hash(b,d)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(a,c) no_use_hash(b,d) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -152,7 +152,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(a,b,c) no_use_hash(b,d)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(a,b,c) no_use_hash(b,d) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d
@@ -162,7 +162,7 @@ order by a.ca;
 do @i := @i + 1;
 evaluate concat ('####', lpad (@i, 3), '. hint: recompile ordered use_hash(b,c,d) no_use_hash(b,c,d)');
 
---@fullplan
+--@queryplan
 select /*+ recompile ordered use_hash(b,c,d) no_use_hash(b,c,d) */
   a.ca as a_ca, b.ca as b_ca, c.ca as c_ca, d.ca as d_ca
 from ta a, tb b, tc c, td d

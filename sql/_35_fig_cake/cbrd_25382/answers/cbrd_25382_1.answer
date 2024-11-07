@@ -40,35 +40,6 @@
 count(*)    
 20     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0]
-seg[2]: cb[0]
-seg[3]: [1]
-seg[4]: cd[1]
-seg[5]: cb[1]
-seg[6]: [2]
-seg[7]: cd[2]
-seg[8]: cb[2]
-seg[9]: [3]
-seg[10]: cd[3]
-seg[11]: cb[3]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (sargs 4) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 5) (loc 1)
-node[2]: dba.tc c(2000/6) (sargs 6) (loc 2)
-node[3]: dba.td d(2000/6) (sargs 3) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1] cd[2] cd[3]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[1]: b.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[1] cd[2]) (loc 0)
-term[2]: c.cd=d.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[2] cd[3]) (loc 0)
-Join graph terms:
-term[3]: d.cb=1 (sel ?) (sarg term) (not-join eligible) (indexable cb[3]) (loc 0)
-term[4]: a.cb range (1 =  or 2 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[0]) (loc 0)
-term[5]: b.cb range (1 =  or 2 =  or 3 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[1]) (loc 0)
-term[6]: c.cb range (1 =  or 2 =  or 3 =  or 4 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[2]) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -147,35 +118,6 @@ Trace Statistics:
 count(*)    
 20     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: cd[0]
-seg[2]: cb[0]
-seg[3]: [1]
-seg[4]: cd[1]
-seg[5]: cb[1]
-seg[6]: [2]
-seg[7]: cd[2]
-seg[8]: cb[2]
-seg[9]: [3]
-seg[10]: cd[3]
-seg[11]: cb[3]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (sargs 5) (loc 0)
-node[1]: dba.tb b(2000/6) (sargs 6) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(2000/6) (sargs 3) (outer-dep-set 0 1) (loc 2)
-node[3]: dba.td d(2000/6) (sargs 4) (outer-dep-set 0 1 2) (loc 3)
-Join graph equivalence classes:
-eqclass[0]: cd[0] cd[1] cd[2] cd[3]
-Join graph edges:
-term[0]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[1]: b.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[1] cd[2]) (loc 0)
-term[2]: c.cd=d.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[2] cd[3]) (loc 0)
-Join graph terms:
-term[3]: c.cb=1 (sel ?) (sarg term) (not-join eligible) (indexable cb[2]) (loc 0)
-term[4]: d.cb range (1 =  or 2 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[3]) (loc 0)
-term[5]: a.cb range (1 =  or 2 =  or 3 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[0]) (loc 0)
-term[6]: b.cb range (1 =  or 2 =  or 3 =  or 4 = ) (sel ?) (rank 2) (sarg term) (not-join eligible) (indexable cb[1]) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?]
@@ -254,30 +196,6 @@ Trace Statistics:
 count(*)    
 2000     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: cb[0]
-seg[3]: cc[0]
-seg[4]: cd[0]
-seg[5]: [1]
-seg[6]: ca[1]
-seg[7]: cb[1]
-seg[8]: cc[1]
-seg[9]: cd[1]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.t_bigint b(2000/8) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1]
-eqclass[1]: cb[0] cb[1]
-eqclass[2]: cc[0] cc[1]
-eqclass[3]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
-term[1]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
-term[2]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
-term[3]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?] AND term[?] AND term[?] AND term[?]
@@ -322,30 +240,6 @@ Trace Statistics:
 count(*)    
 2000     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: cb[0]
-seg[3]: cc[0]
-seg[4]: cd[0]
-seg[5]: [1]
-seg[6]: ca[1]
-seg[7]: cb[1]
-seg[8]: cc[1]
-seg[9]: cd[1]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.t_numeric b(2000/13) (loc 1)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1]
-eqclass[1]: cb[0] cb[1]
-eqclass[2]: cc[0] cc[1]
-eqclass[3]: cd[0] cd[1]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
-term[1]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
-term[2]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
-term[3]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?] AND term[?] AND term[?] AND term[?]
@@ -392,40 +286,6 @@ Trace Statistics:
 count(*)    
 2000     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: cb[0]
-seg[3]: cc[0]
-seg[4]: cd[0]
-seg[5]: [1]
-seg[6]: ca[1]
-seg[7]: cb[1]
-seg[8]: cc[1]
-seg[9]: cd[1]
-seg[10]: [2]
-seg[11]: ca[2]
-seg[12]: cb[2]
-seg[13]: cc[2]
-seg[14]: cd[2]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.tb b(2000/6) (loc 1)
-node[2]: dba.tc c(2000/6) (loc 2)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-eqclass[1]: cb[0] cb[1] cb[2]
-eqclass[2]: cc[0] cc[1] cc[2]
-eqclass[3]: cd[0] cd[1] cd[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
-term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
-term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
-term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
-term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
-term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
-term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
 Query plan:
 idx-join (inner join)
     outer: hash-join (inner join)
@@ -483,40 +343,6 @@ Trace Statistics:
 count(*)    
 2000     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: cb[0]
-seg[3]: cc[0]
-seg[4]: cd[0]
-seg[5]: [1]
-seg[6]: ca[1]
-seg[7]: cb[1]
-seg[8]: cc[1]
-seg[9]: cd[1]
-seg[10]: [2]
-seg[11]: ca[2]
-seg[12]: cb[2]
-seg[13]: cc[2]
-seg[14]: cd[2]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.tb b(2000/6) (loc 1)
-node[2]: dba.tc c(2000/6) (loc 2)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-eqclass[1]: cb[0] cb[1] cb[2]
-eqclass[2]: cc[0] cc[1] cc[2]
-eqclass[3]: cd[0] cd[1] cd[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
-term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
-term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
-term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
-term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
-term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
-term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
 Query plan:
 idx-join (inner join)
     outer: hash-join (inner join)
@@ -574,40 +400,6 @@ Trace Statistics:
 count(*)    
 2000     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: cb[0]
-seg[3]: cc[0]
-seg[4]: cd[0]
-seg[5]: [1]
-seg[6]: ca[1]
-seg[7]: cb[1]
-seg[8]: cc[1]
-seg[9]: cd[1]
-seg[10]: [2]
-seg[11]: ca[2]
-seg[12]: cb[2]
-seg[13]: cc[2]
-seg[14]: cd[2]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.tb b(2000/6) (outer-dep-set 0) (loc 1)
-node[2]: dba.tc c(2000/6) (outer-dep-set 0 1) (loc 2)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-eqclass[1]: cb[0] cb[1] cb[2]
-eqclass[2]: cc[0] cc[1] cc[2]
-eqclass[3]: cd[0] cd[1] cd[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
-term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
-term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
-term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
-term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
-term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
-term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
 Query plan:
 idx-join (inner join)
     outer: hash-join (inner join)
@@ -657,40 +449,6 @@ Trace Statistics:
 count(*)    
 2000     
 
-Join graph segments (f indicates final):
-seg[0]: [0]
-seg[1]: ca[0]
-seg[2]: cb[0]
-seg[3]: cc[0]
-seg[4]: cd[0]
-seg[5]: [1]
-seg[6]: ca[1]
-seg[7]: cb[1]
-seg[8]: cc[1]
-seg[9]: cd[1]
-seg[10]: [2]
-seg[11]: ca[2]
-seg[12]: cb[2]
-seg[13]: cc[2]
-seg[14]: cd[2]
-Join graph nodes:
-node[0]: dba.ta a(2000/6) (loc 0)
-node[1]: dba.tb b(2000/6) (loc 1)
-node[2]: dba.tc c(2000/6) (loc 2)
-Join graph equivalence classes:
-eqclass[0]: ca[0] ca[1] ca[2]
-eqclass[1]: cb[0] cb[1] cb[2]
-eqclass[2]: cc[0] cc[1] cc[2]
-eqclass[3]: cd[0] cd[1] cd[2]
-Join graph edges:
-term[0]: a.ca=b.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[1]) (loc 0)
-term[1]: a.ca=c.ca (sel ?) (join term) (mergeable) (inner-join) (indexable ca[0] ca[2]) (loc 0)
-term[2]: a.cb=b.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[1]) (loc 0)
-term[3]: a.cb=c.cb (sel ?) (join term) (mergeable) (inner-join) (indexable cb[0] cb[2]) (loc 0)
-term[4]: a.cc=b.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[1]) (loc 0)
-term[5]: a.cc=c.cc (sel ?) (join term) (mergeable) (inner-join) (indexable cc[0] cc[2]) (loc 0)
-term[6]: a.cd=b.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[1]) (loc 0)
-term[7]: a.cd=c.cd (sel ?) (join term) (mergeable) (inner-join) (indexable cd[0] cd[2]) (loc 0)
 Query plan:
 hash-join (inner join)
     edge:  term[?] AND term[?] AND term[?] AND term[?]
