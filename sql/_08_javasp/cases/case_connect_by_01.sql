@@ -21,6 +21,12 @@ FROM tbl1
 CONNECT BY PRIOR id=fn_string(mgrid)
 ORDER BY id;
 
+-- CBRD-25612 : result same without using javasp
+SELECT id, mgrid, name
+FROM tbl1
+CONNECT BY PRIOR id=(mgrid)
+ORDER BY id;
+
 -- test 'start with' clause
 SELECT id, mgrid, name
 FROM tbl1
@@ -37,9 +43,24 @@ START WITH mgrid IS NULL
 CONNECT BY PRIOR id=mgrid
 ORDER BY id;
 
+-- CBRD-25612 : result same without using javasp
+SELECT id, mgrid, name, LEVEL
+FROM tbl1
+WHERE LEVEL=2
+START WITH mgrid IS NULL
+CONNECT BY PRIOR id=mgrid
+ORDER BY id;
+
 -- CBRD-24720 : result different with using javasp
 -- test 'CONNECT_BY_ISLEAF'
 SELECT id, mgrid, name, fn_string(CONNECT_BY_ISLEAF)
+FROM tbl1
+START WITH mgrid IS NULL
+CONNECT BY PRIOR id=mgrid
+ORDER BY id;
+
+-- CBRD-25612 : result same without using javasp
+SELECT id, mgrid, name, (CONNECT_BY_ISLEAF)
 FROM tbl1
 START WITH mgrid IS NULL
 CONNECT BY PRIOR id=mgrid
@@ -54,6 +75,13 @@ START WITH name IN ('kim', 'Moy')
 CONNECT BY NOCYCLE PRIOR id=mgrid
 ORDER BY id;
 UPDATE tbl1 SET mgrid=NULL WHERE id=2;
+
+-- CBRD-24720 : result same without using javasp
+SELECT id, mgrid, name, (CONNECT_BY_ISCYCLE)
+FROM tbl1
+START WITH name IN ('kim', 'Moy')
+CONNECT BY NOCYCLE PRIOR id=mgrid
+ORDER BY id;
 
 -- test 'CONNECT_BY_ROOT'
 SELECT id, mgrid, name, fn_string(CONNECT_BY_ROOT id)
@@ -78,6 +106,13 @@ ORDER BY id;
 
 -- CBRD-24720 : result different with using javasp
 SELECT id, mgrid, name, SYS_CONNECT_BY_PATH( fn_string(name) ,'/' )
+FROM tbl1
+START WITH mgrid IS NULL
+CONNECT BY PRIOR id=mgrid
+ORDER BY id;
+
+-- CBRD-25612 : result same without using javasp
+SELECT id, mgrid, name, SYS_CONNECT_BY_PATH( (name) ,'/' )
 FROM tbl1
 START WITH mgrid IS NULL
 CONNECT BY PRIOR id=mgrid
