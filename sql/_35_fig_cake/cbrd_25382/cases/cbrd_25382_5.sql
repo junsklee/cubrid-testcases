@@ -14,10 +14,10 @@
 set @i = 0;
 
 drop table if exists ta, tb, tc, td;
-create table ta (ca int, cb int, cc int, cd int, index i1 (ca, cb, cc), index i2 (cb, cc), index i3 (cd));
-create table tb (ca int, cb int, cc int, cd int, index i1 (ca, cb, cc), index i2 (cb, cc), index i3 (cd));
-create table tc (ca int, cb int, cc int, cd int, index i1 (ca, cb, cc), index i2 (cb, cc), index i3 (cd));
-create table td (ca int, cb int, cc int, cd int, index i1 (ca, cb, cc), index i2 (cb, cc), index i3 (cd));
+create table ta (ca int, cb int, cc int, cd int, index i_a (ca, cb, cc), index i_b (cb, cc), index i_c (cd));
+create table tb (ca int, cb int, cc int, cd int, index i_a (ca, cb, cc), index i_b (cb, cc), index i_c (cd));
+create table tc (ca int, cb int, cc int, cd int, index i_a (ca, cb, cc), index i_b (cb, cc), index i_c (cd));
+create table td (ca int, cb int, cc int, cd int, index i_a (ca, cb, cc), index i_b (cb, cc), index i_c (cd));
 
 insert into ta
   with recursive cte (n) as (

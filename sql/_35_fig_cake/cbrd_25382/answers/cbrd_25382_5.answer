@@ -37,7 +37,7 @@ temp(order by)
                  edge:  term[?]
                  outer: iscan
                             class: a node[?]
-                            index: i? term[?]
+                            index: i_a term[?]
                             cost:  ? card ?
                  inner: sscan
                             class: b node[?]
@@ -53,7 +53,7 @@ trace
 Query Plan:
   SORT (order by)
     HASH JOIN (inner join)
-      INDEX SCAN (a.i?) (key range: a.ca= ?:? )
+      INDEX SCAN (a.i_a) (key range: a.ca= ?:? )
       TABLE SCAN (b)
 
   rewritten query: select /*+ ORDERED USE_HASH */ a.cd, b.cd from [dba.ta] a, [dba.tb] b where a.cd=b.cd and a.ca= ?:?  order by ?
@@ -67,7 +67,7 @@ Trace Statistics:
             SCAN (table: dba.tb), (noscan time: ?, fetch: ?, ioread: ?)
         PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
           SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
-            SCAN (index: dba.ta.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+            SCAN (index: dba.ta.i_a), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
      
 
 ===================================================
@@ -88,7 +88,7 @@ temp(order by)
                             cost:  ? card ?
                  inner: iscan
                             class: b node[?]
-                            index: i? term[?]
+                            index: i_a term[?]
                             cost:  ? card ?
                  cost:  ? card ?
     sort:  ? asc
@@ -102,7 +102,7 @@ Query Plan:
   SORT (order by)
     HASH JOIN (inner join)
       TABLE SCAN (a)
-      INDEX SCAN (b.i?) (key range: b.ca= ?:? )
+      INDEX SCAN (b.i_a) (key range: b.ca= ?:? )
 
   rewritten query: select /*+ ORDERED USE_HASH */ a.cd, b.cd from [dba.ta] a, [dba.tb] b where a.cd=b.cd and b.ca= ?:?  order by ?
 
@@ -112,7 +112,7 @@ Trace Statistics:
       HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
         BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: skip)
           SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
-            SCAN (index: dba.tb.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+            SCAN (index: dba.tb.i_a), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
         PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
           SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
             SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
@@ -137,7 +137,7 @@ temp(order by)
                             cost:  ? card ?
                  inner: iscan
                             class: b node[?]
-                            index: i? term[?]
+                            index: i_a term[?]
                             cost:  ? card ?
                  cost:  ? card ?
     sort:  ? asc
@@ -151,7 +151,7 @@ Query Plan:
   SORT (order by)
     HASH JOIN (left outer join)
       TABLE SCAN (a)
-      INDEX SCAN (b.i?) (key range: b.ca= ?:? )
+      INDEX SCAN (b.i_a) (key range: b.ca= ?:? )
 
   rewritten query: select /*+ ORDERED USE_HASH */ a.cd, b.cd from [dba.ta] a left outer join [dba.tb] b on b.ca= ?:?  and b.cd=a.cd order by ? for orderby_num()> ?:?  and orderby_num()<= ?:? 
 
@@ -162,7 +162,7 @@ Trace Statistics:
       HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
         BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: skip)
           SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
-            SCAN (index: dba.tb.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+            SCAN (index: dba.tb.i_a), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
         PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
           SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
             SCAN (table: dba.ta), (heap time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
@@ -344,7 +344,7 @@ a_cd    b_cd    d_cd
 Query plan:
 iscan
     class: d node[?]
-    index: i? term[?] (covers)
+    index: i_c term[?] (covers)
     filtr: term[?]
     cost:  ? card ?
 Query stmt:
@@ -396,7 +396,7 @@ select /*+ USE_HASH */ a.cd, b.cd, (select /*+ NO_SUBQUERY_CACHE */ d.cd from td
 trace    
 
 Query Plan:
-  INDEX SCAN (d.i?) (key range: d.cd=b.cd, key filter: d.cd=b.cd, covered: true)
+  INDEX SCAN (d.i_c) (key range: d.cd=b.cd, key filter: d.cd=b.cd, covered: true)
 
   rewritten query: (select /*+ NO_SUBQUERY_CACHE */ d.cd from [dba.td] d where d.cd=b.cd and d.cd=b.cd)
 
@@ -451,7 +451,7 @@ Trace Statistics:
             SCAN (temp time: ?, fetch: ?, ioread: ?, readrows: ?, rows: ?)
     SUBQUERY (correlated)
       SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
-        SCAN (index: dba.td.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?, covered: true)
+        SCAN (index: dba.td.i_c), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?, covered: true)
      
 
 ===================================================
@@ -470,11 +470,11 @@ hash-join (inner join)
     edge:  term[?]
     outer: iscan
                class: a node[?]
-               index: i? term[?]
+               index: i_a term[?]
                cost:  ? card ?
     inner: iscan
                class: b node[?]
-               index: i? term[?]
+               index: i_a term[?]
                cost:  ? card ?
     cost:  ? card ?
 Query stmt:
@@ -501,8 +501,8 @@ trace
 
 Query Plan:
   HASH JOIN (inner join)
-    INDEX SCAN (a.i?) (key range: a.ca= ?:? )
-    INDEX SCAN (b.i?) (key range: b.ca= ?:? )
+    INDEX SCAN (a.i_a) (key range: a.ca= ?:? )
+    INDEX SCAN (b.i_a) (key range: b.ca= ?:? )
 
   rewritten query: select /*+ USE_HASH */ a.ca, a.cb, a.cc, a.cd from [dba.ta] a, [dba.tb] b where a.cd=b.cd and b.ca= ?:?  and a.ca= ?:? 
 
@@ -525,10 +525,10 @@ Trace Statistics:
             HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
               BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
                 SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
-                  SCAN (index: dba.tb.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+                  SCAN (index: dba.tb.i_a), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
               PROBE (time: ?, probe_time: ?, fetch: ?, fetch_time: ?, ioread: ?, readkeys: ?, rows: ?, max_collisions: ?)
                 SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
-                  SCAN (index: dba.ta.i?), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
+                  SCAN (index: dba.ta.i_a), (btree time: ?, fetch: ?, ioread: ?, readkeys: ?, filteredkeys: ?, rows: ?) (lookup time: ?, rows: ?)
       HASHJOIN (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
         BUILD (time: ?, build_time: ?, fetch: ?, fetch_time: ?, ioread: ?, hash_method: memory)
           SELECT (time: ?, fetch: ?, fetch_time: ?, ioread: ?)
