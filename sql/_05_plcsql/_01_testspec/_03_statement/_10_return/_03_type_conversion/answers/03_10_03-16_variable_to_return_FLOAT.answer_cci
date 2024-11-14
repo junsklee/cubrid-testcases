@@ -16,11 +16,11 @@ Stored procedure compile error: type of the return value is not compatible with 
 Error:-494
 Semantic: before ' ,
 typeof( t_DATETIME_FLOAT('DATETIME', 'FLOAT', DATETIME'2023...'
-Function t_DATETIME_FLOAT is undefined or given wrong number of parameter. select t_DATETIME_FLOAT('DATETIME', 'FLOAT', datetime '2023-...
+Function t_datetime_float is undefined or given wrong number of parameter. select t_DATETIME_FLOAT('DATETIME', 'FLOAT', datetime '2023-...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_DATETIME_FLOAT' does not exist.
+Stored procedure/function 'dba.t_datetime_float' does not exist.
 
 ===================================================
     
@@ -34,17 +34,17 @@ Semantic: before '  ) RETURN FLOAT IS
 VAR DATETIMELTZ  ;
 begin
 VAR := param_valu...'
-Unsupported argument type 'datetimeltz' of the stored procedure create or replace function t_DATETIMELTZ_FLOAT(variables_typ...
+Unsupported argument type 'datetimeltz' of the stored procedure create or replace function [dba.t_DATETIMELTZ_FLOAT](variabl...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_DATETIMELTZ_FLOAT('DATETIMELTZ', 'FLOAT', datetim...'
-Function t_DATETIMELTZ_FLOAT is undefined or given wrong number of parameter. select t_DATETIMELTZ_FLOAT('DATETIMELTZ', 'FLOAT', datetimel...
+Function t_datetimeltz_float is undefined or given wrong number of parameter. select t_DATETIMELTZ_FLOAT('DATETIMELTZ', 'FLOAT', datetimel...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_DATETIMELTZ_FLOAT' does not exist.
+Stored procedure/function 'dba.t_datetimeltz_float' does not exist.
 
 ===================================================
     
@@ -58,17 +58,17 @@ Semantic: before '  ) RETURN FLOAT IS
 VAR DATETIMETZ  ;
 begin
 VAR := param_value...'
-Unsupported argument type 'datetimetz' of the stored procedure create or replace function t_DATETIMETZ_FLOAT(variables_type...
+Unsupported argument type 'datetimetz' of the stored procedure create or replace function [dba.t_DATETIMETZ_FLOAT](variable...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_DATETIMETZ_FLOAT('DATETIMETZ', 'FLOAT', datetimet...'
-Function t_DATETIMETZ_FLOAT is undefined or given wrong number of parameter. select t_DATETIMETZ_FLOAT('DATETIMETZ', 'FLOAT', datetimetz ...
+Function t_datetimetz_float is undefined or given wrong number of parameter. select t_DATETIMETZ_FLOAT('DATETIMETZ', 'FLOAT', datetimetz ...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_DATETIMETZ_FLOAT' does not exist.
+Stored procedure/function 'dba.t_datetimetz_float' does not exist.
 
 ===================================================
     
@@ -85,11 +85,11 @@ Stored procedure compile error: type of the return value is not compatible with 
 Error:-494
 Semantic: before ' ,
 typeof( t_DATE_FLOAT('DATE', 'FLOAT', DATE'2008-10-31' ) ) ; '
-Function t_DATE_FLOAT is undefined or given wrong number of parameter. select t_DATE_FLOAT('DATE', 'FLOAT', date '2008-10-31'),  ty...
+Function t_date_float is undefined or given wrong number of parameter. select t_DATE_FLOAT('DATE', 'FLOAT', date '2008-10-31'),  ty...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_DATE_FLOAT' does not exist.
+Stored procedure/function 'dba.t_date_float' does not exist.
 
 ===================================================
     
@@ -106,11 +106,11 @@ Stored procedure compile error: type of the return value is not compatible with 
 Error:-494
 Semantic: before ' ,
 typeof( t_TIME_FLOAT('TIME', 'FLOAT', TIME'13:15:45' ) ) ; '
-Function t_TIME_FLOAT is undefined or given wrong number of parameter. select t_TIME_FLOAT('TIME', 'FLOAT', time '13:15:45'),  type...
+Function t_time_float is undefined or given wrong number of parameter. select t_TIME_FLOAT('TIME', 'FLOAT', time '13:15:45'),  type...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_TIME_FLOAT' does not exist.
+Stored procedure/function 'dba.t_time_float' does not exist.
 
 ===================================================
     
@@ -127,11 +127,11 @@ Stored procedure compile error: type of the return value is not compatible with 
 Error:-494
 Semantic: before ' ,
 typeof( t_TIMESTAMP_FLOAT('TIMESTAMP', 'FLOAT', TIMESTAMP'2...'
-Function t_TIMESTAMP_FLOAT is undefined or given wrong number of parameter. select t_TIMESTAMP_FLOAT('TIMESTAMP', 'FLOAT', timestamp '20...
+Function t_timestamp_float is undefined or given wrong number of parameter. select t_TIMESTAMP_FLOAT('TIMESTAMP', 'FLOAT', timestamp '20...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_TIMESTAMP_FLOAT' does not exist.
+Stored procedure/function 'dba.t_timestamp_float' does not exist.
 
 ===================================================
     
@@ -145,17 +145,17 @@ Semantic: before '  ) RETURN FLOAT IS
 VAR TIMESTAMPLTZ  ;
 begin
 VAR := param_val...'
-Unsupported argument type 'timestampltz' of the stored procedure create or replace function t_TIMESTAMPLTZ_FLOAT(variables_ty...
+Unsupported argument type 'timestampltz' of the stored procedure create or replace function [dba.t_TIMESTAMPLTZ_FLOAT](variab...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_TIMESTAMPLTZ_FLOAT('TIMESTAMPLTZ', 'FLOAT', times...'
-Function t_TIMESTAMPLTZ_FLOAT is undefined or given wrong number of parameter. select t_TIMESTAMPLTZ_FLOAT('TIMESTAMPLTZ', 'FLOAT', timesta...
+Function t_timestampltz_float is undefined or given wrong number of parameter. select t_TIMESTAMPLTZ_FLOAT('TIMESTAMPLTZ', 'FLOAT', timesta...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_TIMESTAMPLTZ_FLOAT' does not exist.
+Stored procedure/function 'dba.t_timestampltz_float' does not exist.
 
 ===================================================
     
@@ -169,17 +169,17 @@ Semantic: before '  ) RETURN FLOAT IS
 VAR TIMESTAMPTZ  ;
 begin
 VAR := param_valu...'
-Unsupported argument type 'timestamptz' of the stored procedure create or replace function t_TIMESTAMPTZ_FLOAT(variables_typ...
+Unsupported argument type 'timestamptz' of the stored procedure create or replace function [dba.t_TIMESTAMPTZ_FLOAT](variabl...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_TIMESTAMPTZ_FLOAT('TIMESTAMPTZ', 'FLOAT', timesta...'
-Function t_TIMESTAMPTZ_FLOAT is undefined or given wrong number of parameter. select t_TIMESTAMPTZ_FLOAT('TIMESTAMPTZ', 'FLOAT', timestamp...
+Function t_timestamptz_float is undefined or given wrong number of parameter. select t_TIMESTAMPTZ_FLOAT('TIMESTAMPTZ', 'FLOAT', timestamp...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_TIMESTAMPTZ_FLOAT' does not exist.
+Stored procedure/function 'dba.t_timestamptz_float' does not exist.
 
 ===================================================
     
@@ -308,17 +308,17 @@ VAR BIT(8)  ;
 begin
 VAR := param_value ;
 d...'
-Unsupported argument type 'bit' of the stored procedure create or replace function t_BIT_FLOAT(variables_type  varch...
+Unsupported argument type 'bit' of the stored procedure create or replace function [dba.t_BIT_FLOAT](variables_type ...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_BIT_FLOAT('BIT(8)', 'FLOAT', 0xaa ) ) ; '
-Function t_BIT_FLOAT is undefined or given wrong number of parameter. select t_BIT_FLOAT('BIT(8)', 'FLOAT', X'aa'),  typeof(t_BIT_...
+Function t_bit_float is undefined or given wrong number of parameter. select t_BIT_FLOAT('BIT(8)', 'FLOAT', X'aa'),  typeof(t_BIT_...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_BIT_FLOAT' does not exist.
+Stored procedure/function 'dba.t_bit_float' does not exist.
 
 ===================================================
     
@@ -332,17 +332,17 @@ Semantic: before '  ) RETURN FLOAT IS
 VAR BIT VARYING  ;
 begin
 VAR := param_valu...'
-dba.BITVARYING is not defined. create or replace function t_BITVARYING_FLOAT(variables_type...
+dba.BITVARYING is not defined. create or replace function [dba.t_BITVARYING_FLOAT](variable...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_BITVARYING_FLOAT('BIT VARYING', 'FLOAT', 0xaa ) ) ; '
-Function t_BITVARYING_FLOAT is undefined or given wrong number of parameter. select t_BITVARYING_FLOAT('BIT VARYING', 'FLOAT', X'aa'),  t...
+Function t_bitvarying_float is undefined or given wrong number of parameter. select t_BITVARYING_FLOAT('BIT VARYING', 'FLOAT', X'aa'),  t...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_BITVARYING_FLOAT' does not exist.
+Stored procedure/function 'dba.t_bitvarying_float' does not exist.
 
 ===================================================
     
@@ -397,11 +397,11 @@ Stored procedure compile error: no viable alternative at input 'VAR SET'
 Error:-494
 Semantic: before ' ,
 typeof( t_SET_FLOAT('SET', 'FLOAT', {'c','c','c','b','b','a...'
-Function t_SET_FLOAT is undefined or given wrong number of parameter. select t_SET_FLOAT('SET', 'FLOAT'),  typeof(t_SET_FLOAT('SET...
+Function t_set_float is undefined or given wrong number of parameter. select t_SET_FLOAT('SET', 'FLOAT'),  typeof(t_SET_FLOAT('SET...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_SET_FLOAT' does not exist.
+Stored procedure/function 'dba.t_set_float' does not exist.
 
 ===================================================
     
@@ -418,11 +418,11 @@ Stored procedure compile error: no viable alternative at input 'VAR MULTISET'
 Error:-494
 Semantic: before ' ,
 typeof( t_MULTISET_FLOAT('MULTISET', 'FLOAT', {'c','c','c',...'
-Function t_MULTISET_FLOAT is undefined or given wrong number of parameter. select t_MULTISET_FLOAT('MULTISET', 'FLOAT'),  typeof(t_MULT...
+Function t_multiset_float is undefined or given wrong number of parameter. select t_MULTISET_FLOAT('MULTISET', 'FLOAT'),  typeof(t_MULT...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_MULTISET_FLOAT' does not exist.
+Stored procedure/function 'dba.t_multiset_float' does not exist.
 
 ===================================================
     
@@ -439,11 +439,11 @@ Stored procedure compile error: no viable alternative at input 'VAR LIST'
 Error:-494
 Semantic: before ' ,
 typeof( t_LIST_FLOAT('LIST', 'FLOAT', {'c','c','c','b','b',...'
-Function t_LIST_FLOAT is undefined or given wrong number of parameter. select t_LIST_FLOAT('LIST', 'FLOAT'),  typeof(t_LIST_FLOAT('...
+Function t_list_float is undefined or given wrong number of parameter. select t_LIST_FLOAT('LIST', 'FLOAT'),  typeof(t_LIST_FLOAT('...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_LIST_FLOAT' does not exist.
+Stored procedure/function 'dba.t_list_float' does not exist.
 
 ===================================================
     
@@ -460,11 +460,11 @@ Syntax: invalid create function
 Error:-494
 Semantic: before ' ,
 typeof( t_ENUM_FLOAT('ENUM', 'FLOAT', 'yellow' ) ) ; '
-Function t_ENUM_FLOAT is undefined or given wrong number of parameter. select t_ENUM_FLOAT('ENUM', 'FLOAT', 'yellow'),  typeof(t_EN...
+Function t_enum_float is undefined or given wrong number of parameter. select t_ENUM_FLOAT('ENUM', 'FLOAT', 'yellow'),  typeof(t_EN...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_ENUM_FLOAT' does not exist.
+Stored procedure/function 'dba.t_enum_float' does not exist.
 
 ===================================================
     
@@ -479,17 +479,17 @@ VAR BLOB  ;
 begin
 VAR := param_value ;
 dbm...'
-Unsupported argument type 'blob' of the stored procedure create or replace function t_BLOB_FLOAT(variables_type  varc...
+Unsupported argument type 'blob' of the stored procedure create or replace function [dba.t_BLOB_FLOAT](variables_type...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_BLOB_FLOAT('BLOB', 'FLOAT', BIT_TO_BLOB(X'000010'...'
-Function t_BLOB_FLOAT is undefined or given wrong number of parameter. select t_BLOB_FLOAT('BLOB', 'FLOAT',  bit_to_blob(X'000010')...
+Function t_blob_float is undefined or given wrong number of parameter. select t_BLOB_FLOAT('BLOB', 'FLOAT',  bit_to_blob(X'000010')...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_BLOB_FLOAT' does not exist.
+Stored procedure/function 'dba.t_blob_float' does not exist.
 
 ===================================================
     
@@ -504,17 +504,17 @@ VAR CLOB  ;
 begin
 VAR := param_value ;
 dbm...'
-Unsupported argument type 'clob' of the stored procedure create or replace function t_CLOB_FLOAT(variables_type  varc...
+Unsupported argument type 'clob' of the stored procedure create or replace function [dba.t_CLOB_FLOAT](variables_type...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_CLOB_FLOAT('CLOB', 'FLOAT', CHAR_TO_CLOB('This is...'
-Function t_CLOB_FLOAT is undefined or given wrong number of parameter. select t_CLOB_FLOAT('CLOB', 'FLOAT',  char_to_clob('This is ...
+Function t_clob_float is undefined or given wrong number of parameter. select t_CLOB_FLOAT('CLOB', 'FLOAT',  char_to_clob('This is ...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_CLOB_FLOAT' does not exist.
+Stored procedure/function 'dba.t_clob_float' does not exist.
 
 ===================================================
     
@@ -529,17 +529,17 @@ VAR JSON  ;
 begin
 VAR := param_value ;
 dbm...'
-Unsupported argument type 'json' of the stored procedure create or replace function t_JSON_FLOAT(variables_type  varc...
+Unsupported argument type 'json' of the stored procedure create or replace function [dba.t_JSON_FLOAT](variables_type...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_JSON_FLOAT('JSON', 'FLOAT', '{"a":1}' ) ) ; '
-Function t_JSON_FLOAT is undefined or given wrong number of parameter. select t_JSON_FLOAT('JSON', 'FLOAT', '{"a":1}'),  typeof(t_J...
+Function t_json_float is undefined or given wrong number of parameter. select t_JSON_FLOAT('JSON', 'FLOAT', '{"a":1}'),  typeof(t_J...
 
 ===================================================
 Error:-894
-Stored procedure/function 't_JSON_FLOAT' does not exist.
+Stored procedure/function 'dba.t_json_float' does not exist.
 
 ===================================================
 0

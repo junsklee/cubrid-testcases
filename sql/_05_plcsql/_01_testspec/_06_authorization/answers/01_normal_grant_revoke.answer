@@ -188,8 +188,6 @@ DBA     U1     5     _db_stored_procedure     EXECUTE     0
 
 ===================================================
 grantor.name    grantee.name    object_type    object_of    auth_type    is_grantable    
-DBA     U1     5     null     EXECUTE     0     
-DBA     U1     5     null     EXECUTE     0     
 
 
 ===================================================
@@ -200,7 +198,7 @@ null
 ===================================================
 Error:-494
 Semantic: before ' ; '
-dba.sp1() is not defined. select 
+Function dba.sp1 is undefined. select [dba.sp1].[dba.sp1]()
 
 ===================================================
 Error:-894
@@ -224,8 +222,6 @@ null
 
 ===================================================
 grantor.name    grantee.name    object_type    object_of    auth_type    is_grantable    
-DBA     U1     5     null     EXECUTE     0     
-DBA     U1     5     null     EXECUTE     0     
 
 
 ===================================================
@@ -236,8 +232,6 @@ DBA     U1     5     null     EXECUTE     0
 
 ===================================================
 grantor.name    grantee.name    object_type    object_of    auth_type    is_grantable    
-DBA     U1     5     null     EXECUTE     0     
-DBA     U1     5     null     EXECUTE     0     
 
 
 ===================================================
@@ -248,7 +242,7 @@ null
 ===================================================
 Error:-494
 Semantic: before ' ; '
-dba.sp1() is not defined. select 
+Function dba.sp1 is undefined. select [dba.sp1].[dba.sp1]()
 
 ===================================================
 Error:-894

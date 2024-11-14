@@ -57,7 +57,7 @@ VAR DATETIME := param ;
 VAR1 DATETIME  ;
 begin
 VAR1 := ...'
-Unsupported argument type 'datetimetz' of the stored procedure create or replace procedure [dba.t_datetimetz_datetime](para...
+Unsupported argument type 'datetimetz' of the stored procedure create or replace procedure [dba.t_DATETIMETZ_DATETIME](para...
 
 ===================================================
 Error:-495

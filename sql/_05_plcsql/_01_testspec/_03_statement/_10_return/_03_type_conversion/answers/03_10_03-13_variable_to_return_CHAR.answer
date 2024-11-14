@@ -31,14 +31,14 @@ Error:-494
 Semantic: before '  ) RETURN CHAR IS
 VAR DATETIMELTZ  ;
 begin
-VAR := param_v...'
+VAR := param_value...'
 Unsupported argument type 'datetimeltz' of the stored procedure create or replace function [dba.t_DATETIMELTZ_CHAR](variable...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_DATETIMELTZ_CHAR('DATETIMELTZ', 'CHAR', datetimel...'
-Function t_DATETIMELTZ_CHAR is undefined or given wrong number of parameter. select t_DATETIMELTZ_CHAR('DATETIMELTZ', 'CHAR', datetimeltz...
+Function t_datetimeltz_char is undefined or given wrong number of parameter. select t_DATETIMELTZ_CHAR('DATETIMELTZ', 'CHAR', datetimeltz...
 
 ===================================================
 Error:-894
@@ -55,12 +55,14 @@ Error:-494
 Semantic: before '  ) RETURN CHAR IS
 VAR DATETIMETZ  ;
 begin
+VAR := param_value ...'
+Unsupported argument type 'datetimetz' of the stored procedure create or replace function [dba.t_DATETIMETZ_CHAR](variables...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_DATETIMETZ_CHAR('DATETIMETZ', 'CHAR', datetimetz ...'
-Function t_DATETIMETZ_CHAR is undefined or given wrong number of parameter. select t_DATETIMETZ_CHAR('DATETIMETZ', 'CHAR', datetimetz '0...
+Function t_datetimetz_char is undefined or given wrong number of parameter. select t_DATETIMETZ_CHAR('DATETIMETZ', 'CHAR', datetimetz '0...
 
 ===================================================
 Error:-894
@@ -134,12 +136,14 @@ Error:-494
 Semantic: before '  ) RETURN CHAR IS
 VAR TIMESTAMPLTZ  ;
 begin
+VAR := param_valu...'
+Unsupported argument type 'timestampltz' of the stored procedure create or replace function [dba.t_TIMESTAMPLTZ_CHAR](variabl...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_TIMESTAMPLTZ_CHAR('TIMESTAMPLTZ', 'CHAR', timesta...'
-Function t_TIMESTAMPLTZ_CHAR is undefined or given wrong number of parameter. select t_TIMESTAMPLTZ_CHAR('TIMESTAMPLTZ', 'CHAR', timestamp...
+Function t_timestampltz_char is undefined or given wrong number of parameter. select t_TIMESTAMPLTZ_CHAR('TIMESTAMPLTZ', 'CHAR', timestamp...
 
 ===================================================
 Error:-894
@@ -156,12 +160,14 @@ Error:-494
 Semantic: before '  ) RETURN CHAR IS
 VAR TIMESTAMPTZ  ;
 begin
+VAR := param_value...'
+Unsupported argument type 'timestamptz' of the stored procedure create or replace function [dba.t_TIMESTAMPTZ_CHAR](variable...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_TIMESTAMPTZ_CHAR('TIMESTAMPTZ', 'CHAR', timestamp...'
-Function t_TIMESTAMPTZ_CHAR is undefined or given wrong number of parameter. select t_TIMESTAMPTZ_CHAR('TIMESTAMPTZ', 'CHAR', timestamptz...
+Function t_timestamptz_char is undefined or given wrong number of parameter. select t_TIMESTAMPTZ_CHAR('TIMESTAMPTZ', 'CHAR', timestamptz...
 
 ===================================================
 Error:-894
@@ -292,12 +298,15 @@ Error:-494
 Semantic: before '  ) RETURN CHAR IS
 VAR BIT(8)  ;
 begin
+VAR := param_value ;
+db...'
+Unsupported argument type 'bit' of the stored procedure create or replace function [dba.t_BIT_CHAR](variables_type  ...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_BIT_CHAR('BIT(8)', 'CHAR', 0xaa ) ) ; '
-Function t_BIT_CHAR is undefined or given wrong number of parameter. select t_BIT_CHAR('BIT(8)', 'CHAR', X'aa'),  typeof(t_BIT_CH...
+Function t_bit_char is undefined or given wrong number of parameter. select t_BIT_CHAR('BIT(8)', 'CHAR', X'aa'),  typeof(t_BIT_CH...
 
 ===================================================
 Error:-894
@@ -314,12 +323,14 @@ Error:-494
 Semantic: before '  ) RETURN CHAR IS
 VAR BIT VARYING  ;
 begin
+VAR := param_value...'
+dba.BITVARYING is not defined. create or replace function [dba.t_BITVARYING_CHAR](variables...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_BITVARYING_CHAR('BIT VARYING', 'CHAR', 0xaa ) ) ; '
-Function t_BITVARYING_CHAR is undefined or given wrong number of parameter. select t_BITVARYING_CHAR('BIT VARYING', 'CHAR', X'aa'),  typ...
+Function t_bitvarying_char is undefined or given wrong number of parameter. select t_BITVARYING_CHAR('BIT VARYING', 'CHAR', X'aa'),  typ...
 
 ===================================================
 Error:-894
@@ -376,7 +387,7 @@ Stored procedure compile error: no viable alternative at input 'VAR SET'
 Error:-494
 Semantic: before ' ,
 typeof( t_SET_CHAR('SET', 'CHAR', {'c','c','c','b','b','a'}...'
-Function t_SET_CHAR is undefined or given wrong number of parameter. select t_SET_CHAR('SET', 'CHAR'),  typeof(t_SET_CHAR('SET', ...
+Function t_set_char is undefined or given wrong number of parameter. select t_SET_CHAR('SET', 'CHAR'),  typeof(t_SET_CHAR('SET', ...
 
 ===================================================
 Error:-894
@@ -397,7 +408,7 @@ Stored procedure compile error: no viable alternative at input 'VAR MULTISET'
 Error:-494
 Semantic: before ' ,
 typeof( t_MULTISET_CHAR('MULTISET', 'CHAR', {'c','c','c','b...'
-Function t_MULTISET_CHAR is undefined or given wrong number of parameter. select t_MULTISET_CHAR('MULTISET', 'CHAR'),  typeof(t_MULTIS...
+Function t_multiset_char is undefined or given wrong number of parameter. select t_MULTISET_CHAR('MULTISET', 'CHAR'),  typeof(t_MULTIS...
 
 ===================================================
 Error:-894
@@ -418,7 +429,7 @@ Stored procedure compile error: no viable alternative at input 'VAR LIST'
 Error:-494
 Semantic: before ' ,
 typeof( t_LIST_CHAR('LIST', 'CHAR', {'c','c','c','b','b', '...'
-Function t_LIST_CHAR is undefined or given wrong number of parameter. select t_LIST_CHAR('LIST', 'CHAR'),  typeof(t_LIST_CHAR('LIS...
+Function t_list_char is undefined or given wrong number of parameter. select t_LIST_CHAR('LIST', 'CHAR'),  typeof(t_LIST_CHAR('LIS...
 
 ===================================================
 Error:-894
@@ -439,7 +450,7 @@ Syntax: invalid create function
 Error:-494
 Semantic: before ' ,
 typeof( t_ENUM_CHAR('ENUM', 'CHAR', 'yellow' ) ) ; '
-Function t_ENUM_CHAR is undefined or given wrong number of parameter. select t_ENUM_CHAR('ENUM', 'CHAR', 'yellow'),  typeof(t_ENUM...
+Function t_enum_char is undefined or given wrong number of parameter. select t_ENUM_CHAR('ENUM', 'CHAR', 'yellow'),  typeof(t_ENUM...
 
 ===================================================
 Error:-894
@@ -457,12 +468,14 @@ Semantic: before '  ) RETURN CHAR IS
 VAR BLOB  ;
 begin
 VAR := param_value ;
+dbms...'
+Unsupported argument type 'blob' of the stored procedure create or replace function [dba.t_BLOB_CHAR](variables_type ...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_BLOB_CHAR('BLOB', 'CHAR', BIT_TO_BLOB(X'000010') ...'
-Function t_BLOB_CHAR is undefined or given wrong number of parameter. select t_BLOB_CHAR('BLOB', 'CHAR',  bit_to_blob(X'000010')),...
+Function t_blob_char is undefined or given wrong number of parameter. select t_BLOB_CHAR('BLOB', 'CHAR',  bit_to_blob(X'000010')),...
 
 ===================================================
 Error:-894
@@ -480,12 +493,14 @@ Semantic: before '  ) RETURN CHAR IS
 VAR CLOB  ;
 begin
 VAR := param_value ;
+dbms...'
+Unsupported argument type 'clob' of the stored procedure create or replace function [dba.t_CLOB_CHAR](variables_type ...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_CLOB_CHAR('CLOB', 'CHAR', CHAR_TO_CLOB('This is a...'
-Function t_CLOB_CHAR is undefined or given wrong number of parameter. select t_CLOB_CHAR('CLOB', 'CHAR',  char_to_clob('This is a ...
+Function t_clob_char is undefined or given wrong number of parameter. select t_CLOB_CHAR('CLOB', 'CHAR',  char_to_clob('This is a ...
 
 ===================================================
 Error:-894
@@ -503,12 +518,14 @@ Semantic: before '  ) RETURN CHAR IS
 VAR JSON  ;
 begin
 VAR := param_value ;
+dbms...'
+Unsupported argument type 'json' of the stored procedure create or replace function [dba.t_JSON_CHAR](variables_type ...
 
 ===================================================
 Error:-494
 Semantic: before ' ,
 typeof( t_JSON_CHAR('JSON', 'CHAR', '{"a":1}' ) ) ; '
-Function t_JSON_CHAR is undefined or given wrong number of parameter. select t_JSON_CHAR('JSON', 'CHAR', '{"a":1}'),  typeof(t_JSO...
+Function t_json_char is undefined or given wrong number of parameter. select t_JSON_CHAR('JSON', 'CHAR', '{"a":1}'),  typeof(t_JSO...
 
 ===================================================
 Error:-894
