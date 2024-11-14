@@ -45,15 +45,39 @@ begin
     dbms_output.put_line(datetime'0000-00-00 00:00:00.000');
 end;
 
+--  CBRD-25187
+create or replace procedure proc_unix_to_dt as
+begin
+    dbms_output.put_line(UNIX_TIMESTAMP(TO_DATETIME('0000-00-00 00:00:00.000')));
+end;
+
+--  CBRD-25187
+create or replace procedure proc_unix_to_date as
+begin
+    dbms_output.put_line(UNIX_TIMESTAMP(TO_DATE('0000-00-00')));
+end;
+
+--  CBRD-25187
+create or replace procedure proc_unix_to_ts as
+begin
+    dbms_output.put_line(UNIX_TIMESTAMP(TIMESTAMP('0000-00-00 00:00:00.000')));
+end;
+
 call proc_ts();
 call proc_time();
 call proc_date();
 call proc_dt();
+call proc_unix_to_dt();
+call proc_unix_to_date();
+call proc_unix_to_ts();
 
 drop procedure proc_ts;
 drop procedure proc_time;
 drop procedure proc_date;
 drop procedure proc_dt;
-
+drop procedure proc_unix_to_dt;
+drop procedure proc_unix_to_date;
+drop procedure proc_unix_to_ts;
 
 --+ server-message off
+
