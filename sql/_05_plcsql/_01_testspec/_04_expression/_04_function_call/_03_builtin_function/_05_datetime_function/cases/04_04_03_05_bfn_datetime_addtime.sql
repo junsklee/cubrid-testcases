@@ -1,5 +1,6 @@
 --+ server-message on
-
+-- Verified for CBRD-25303
+-- Ensures that the calling of ADDTIME does not result in a runtime error
 -- normal: basic usage of a builtin function call
 
 create or replace procedure t () as
