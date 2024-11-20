@@ -1,5 +1,5 @@
 --+ server-message on
--- verified the CBRD-25059
+-- verified for CBRD-25059 and CBRD-25273
 
 -- adddate
 create or replace procedure test_adddate1 as
