@@ -12,7 +12,7 @@
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not fit in a SHORT: -32769
+  (line 1, column 111) data overflow on data type SHORT: -32769
 
 ===================================================
 0
@@ -20,7 +20,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not fit in a SHORT: 32768
+  (line 1, column 111) data overflow on data type SHORT: 32768
 
 ===================================================
     
@@ -33,7 +33,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not fit in a SHORT: -32769
+  (line 1, column 111) data overflow on data type SHORT: -32769
 
 ===================================================
 0
@@ -41,7 +41,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 112) not fit in a SHORT: 32768
+  (line 1, column 112) data overflow on data type SHORT: 32768
 
 ===================================================
     
@@ -54,7 +54,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not fit in an INTEGER: -2147483649
+  (line 1, column 111) data overflow on data type INTEGER: -2147483649
 
 ===================================================
 0
@@ -62,7 +62,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 112) not fit in an INTEGER: 2147483648
+  (line 1, column 112) data overflow on data type INTEGER: 2147483648
 
 ===================================================
     
@@ -75,7 +75,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 112) not fit in an INTEGER: -2147483649
+  (line 1, column 112) data overflow on data type INTEGER: -2147483649
 
 ===================================================
 0
@@ -83,7 +83,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 113) not fit in an INTEGER: 2147483648
+  (line 1, column 113) data overflow on data type INTEGER: 2147483648
 
 ===================================================
     
@@ -96,7 +96,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not fit in a BIGINT: -9223372036854775809
+  (line 1, column 111) data overflow on data type BIGINT: -9223372036854775809
 
 ===================================================
 0
@@ -104,7 +104,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 112) not fit in a BIGINT: 9223372036854775808
+  (line 1, column 112) data overflow on data type BIGINT: 9223372036854775808
 
 ===================================================
     
@@ -159,7 +159,7 @@ type_support_return()
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) data overflow on data type FLOAT
+  (line 1, column 111) data overflow on data type FLOAT: -3.402823466E39
 
 ===================================================
 0
@@ -167,7 +167,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 112) data overflow on data type FLOAT
+  (line 1, column 112) data overflow on data type FLOAT: 3.402823466E39
 
 ===================================================
     
@@ -180,7 +180,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) data overflow on data type FLOAT
+  (line 1, column 111) data overflow on data type FLOAT: -3.402823466E39
 
 ===================================================
 0
@@ -188,7 +188,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 112) data overflow on data type FLOAT
+  (line 1, column 112) data overflow on data type FLOAT: 3.402823466E39
 
 ===================================================
     
@@ -238,7 +238,7 @@ type_support_return()
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATE format
+  (line 1, column 111) invalid DATE string: '0001-01-01 00:00:00'
 
 ===================================================
 0
@@ -249,7 +249,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATE format
+  (line 1, column 111) invalid DATE string: '0000-13-00'
 
 ===================================================
 0
@@ -260,7 +260,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATE format
+  (line 1, column 111) invalid DATE string: '0001-01-32'
 
 ===================================================
 0
@@ -271,7 +271,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATE format
+  (line 1, column 111) invalid DATE string: '202A-12-27'
 
 ===================================================
 0
@@ -287,7 +287,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a TIME format
+  (line 1, column 111) invalid TIME string: '24:30:21'
 
 ===================================================
 0
@@ -298,7 +298,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a TIME format
+  (line 1, column 111) invalid TIME string: '23:60:21'
 
 ===================================================
 0
@@ -309,7 +309,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a TIME format
+  (line 1, column 111) invalid TIME string: '23:59:60'
 
 ===================================================
 0
@@ -320,7 +320,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a TIME format
+  (line 1, column 111) invalid TIME string: '11:59:59 CM'
 
 ===================================================
 0
@@ -336,7 +336,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a TIMESTAMP format
+  (line 1, column 111) invalid TIMESTAMP string: '1970-01-01 08:00:01'
 
 ===================================================
 0
@@ -347,7 +347,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a TIMESTAMP format
+  (line 1, column 111) invalid TIMESTAMP string: '2038-01-20 03:14:07'
 
 ===================================================
 0
@@ -396,7 +396,7 @@ type_support_return()
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATETIME format
+  (line 1, column 111) invalid DATETIME string: '0000-03-01 00:00:00'
 
 ===================================================
 0
@@ -407,7 +407,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATETIME format
+  (line 1, column 111) invalid DATETIME string: '0001-13-01 00:00:00'
 
 ===================================================
 0
@@ -418,7 +418,7 @@ Stored procedure execute error:
 ===================================================
 Error:-889
 Stored procedure execute error: 
-  (line 1, column 111) not in a DATETIME format
+  (line 1, column 111) invalid DATETIME string: '0001-03-32 00:00:00'
 
 ===================================================
 0
