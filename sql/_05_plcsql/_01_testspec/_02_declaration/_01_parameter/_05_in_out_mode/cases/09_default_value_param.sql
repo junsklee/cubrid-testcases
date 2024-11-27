@@ -216,4 +216,112 @@ call date_default();
 
 drop procedure date_default;
 
+
+-- CBRD-25573
+evaluate 'Default parameter substitution in nested procedure calls';
+create or replace procedure test_proc1(a int := 1) as
+begin
+    DBMS_OUTPUT.put_line('proc1 param: ' || a);
+end;
+
+create or replace procedure test_proc2(a int) as
+begin
+    DBMS_OUTPUT.put_line('proc2 param: ' || a);
+    -- should use the default value for 'a'
+    test_proc1();
+end;
+
+call test_proc2(10);
+
+drop procedure test_proc2;
+drop procedure test_proc1;
+
+-- CBRD-25573
+evaluate 'Multiple default parameters in nested calls';
+create or replace procedure test_proc3(a int := 2, b varchar := 'default') as
+begin
+    DBMS_OUTPUT.put_line('proc3 params: ' || a || ', ' || b);
+end;
+
+create or replace procedure test_proc4(a int) as
+begin
+    DBMS_OUTPUT.put_line('proc4 param: ' || a);
+    -- should use both default values
+    test_proc3();
+    -- should use default for 'b'
+    test_proc3(10);
+end;
+
+call test_proc4(5);
+
+drop procedure test_proc4;
+drop procedure test_proc3;
+
+-- CBRD-25573
+evaluate 'Missing required parameters in nested calls';
+create or replace procedure test_proc5(a int, b int := 20) as
+begin
+    DBMS_OUTPUT.put_line('proc5 params: ' || a || ', ' || b);
+end;
+
+create or replace procedure test_proc6 as
+begin
+    -- valid call
+    test_proc5(10);
+    -- error call (should cause compilation error due to missing required parameter 'a')
+    test_proc5();
+end;
+
+-- error call (process shhould not have been created)
+call test_proc6();
+
+drop procedure test_proc6;
+drop procedure test_proc5;
+
+-- CBRD-25573
+evaluate 'Chaining procedures with default parameters';
+create or replace procedure proc_a(a int := 5) as
+begin
+    DBMS_OUTPUT.put_line('proc_a param: ' || a);
+end;
+
+create or replace procedure proc_b(b int := 10) as
+begin
+    DBMS_OUTPUT.put_line('proc_b param: ' || b);
+    -- should use default value for 'a'
+    proc_a();
+end;
+
+create or replace procedure proc_c(c int := 15) as
+begin
+    DBMS_OUTPUT.put_line('proc_c param: ' || c);
+    -- should use default value for 'b'
+    proc_b();
+end;
+
+call proc_c();
+
+drop procedure proc_c;
+drop procedure proc_b;
+drop procedure proc_a;
+
+-- CBRD-25573
+evaluate 'Default parameter conflict in nested calls';
+create or replace procedure proc_x(a int := 50) as
+begin
+    DBMS_OUTPUT.put_line('proc_x param: ' || a);
+end;
+
+create or replace procedure proc_y(a int := 30) as
+begin
+    -- should use proc_x's default, not proc_y's
+    proc_x();
+end;
+
+call proc_y();
+
+drop procedure proc_y;
+drop procedure proc_x;
+
+
 --+ server-message off
