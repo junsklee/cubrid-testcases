@@ -23,6 +23,40 @@ select count(*) from db_stored_procedure_args where sp_name = 't';
 
 call t();
 
+
+-- CBRD-25302: TO_CHAR 3rd arg parse error
+create or replace procedure t () as
+begin
+    dbms_output.put_line('-- TO_CHAR(2 arguments): intl_date_lang=en_US');
+    dbms_output.put_line(TO_CHAR(123.456,'999.999'));
+    dbms_output.put_line('-- TO_CHAR(3 arguments): intl_date_lang=en_US');
+    dbms_output.put_line(TO_CHAR(123.456,'999.999','en_US'));
+    dbms_output.put_line(TO_CHAR(123.456,'999.999','ko_KR'));
+end;
+
+call t();
+
+
+set system parameters 'intl_date_lang=ko_KR';
+
+create or replace procedure t () as
+begin
+    dbms_output.put_line('-- TO_CHAR(2 arguments): intl_date_lang=ko_KR');
+    dbms_output.put_line(TO_CHAR(123.456,'999.999'));
+    dbms_output.put_line('-- TO_CHAR(3 arguments): intl_date_lang=ko_KR');
+    dbms_output.put_line(TO_CHAR(123.456,'999.999','en_US'));
+    dbms_output.put_line(TO_CHAR(123.456,'999.999','ko_KR'));
+end;
+
+call t();
+
+set system parameters 'intl_date_lang=en_US';
+
 drop procedure t;
+
+-- CBRD-25302
+prepare st from 'select to_char(?, ?, ?) from dual';
+execute st using 123.456, '999.999', 'en_US';
+drop prepare st;
 
 --+ server-message off

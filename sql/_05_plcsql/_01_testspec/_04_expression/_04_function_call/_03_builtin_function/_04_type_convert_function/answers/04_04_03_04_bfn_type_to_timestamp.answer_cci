@@ -16,15 +16,16 @@ count(*)
 null     
 
 
-01/11/1999
-01/11/1999
-01/11/1999
-01/11/1999
-01/11/2099
-01/11/1999
-01/01/1999
-05/01/1999
-11/11/1999
+-- TO_TIMESTAMP(date input)
+12:00:00 AM 01/11/1999
+12:00:00 AM 01/11/1999
+12:00:00 AM 01/11/1999
+12:00:00 AM 01/11/1999
+-- TO_TIMESTAMP(date with time input)
+06:41:53 PM 01/11/1999
+06:41:53 PM 01/11/1999
+-- TO_TIMESTAMP(extra)
+01:10:30 PM 12/25/2008
 ===================================================
 0
 
@@ -33,11 +34,11 @@ null
 null     
 
 
--- TO_DATE(2 arguments): intl_date_lang=en_US
-05/12/1999
--- TO_DATE(3 arguments): intl_date_lang=en_US
-05/12/1999
-05/12/1999
+-- TO_TIMESTAMP(2 arguments): intl_date_lang=en_US
+06:41:53 PM 01/11/1999
+-- TO_TIMESTAMP(3 arguments) intl_date_lang=en_US
+06:41:53 PM 01/11/1999
+06:41:53 PM 01/11/1999
 ===================================================
 0
 
@@ -49,11 +50,11 @@ null
 null     
 
 
--- TO_DATE(2 arguments): intl_date_lang=ko_KR
-05/12/1999
--- TO_DATE(3 arguments): intl_date_lang=ko_KR
-05/12/1999
-05/12/1999
+-- TO_TIMESTAMP(2 arguments): intl_date_lang=ko_KR
+06:41:53 PM 01/11/1999
+-- TO_TIMESTAMP(3 arguments): intl_date_lang=ko_KR
+06:41:53 PM 01/11/1999
+06:41:53 PM 01/11/1999
 ===================================================
 0
 
@@ -64,8 +65,8 @@ null
 0
 
 ===================================================
-to_date( ?:0 ,  ?:1 ,  ?:2 )    
-1999-05-12     
+to_timestamp( ?:0 ,  ?:1 ,  ?:2 )    
+1999-01-11 18:41:53     
 
 
 ===================================================

@@ -25,7 +25,6 @@ begin
 
     dbms_output.put_line('-- TO_DATETIME(extra)');
     dbms_output.put_line(TO_DATETIME('DATE: 12-25-2008 TIME: 13:10:30.999', '"DATE:" MM-DD-YYYY "TIME:" HH24:MI:SS.FF'));
-    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF', 'en_US')); -- TO_DATETIME 3rd parm parese error
 end;
 
 select count(*) from db_stored_procedure where sp_name = 't';
@@ -33,6 +32,40 @@ select count(*) from db_stored_procedure_args where sp_name = 't';
 
 call t();
 
+
+-- CBRD-25302: TO_DATETIME 3rd arg parse error
+create or replace procedure t () as
+begin
+    dbms_output.put_line('-- TO_DATETIME(2 arguments): intl_date_lang=en_US');
+    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF'));
+    dbms_output.put_line('-- TO_DATETIME(3 arguments): intl_date_lang=en_US');
+    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF', 'en_US'));
+    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF', 'ko_KR'));
+end;
+
+call t();
+
+
+set system parameters 'intl_date_lang=ko_KR';
+
+create or replace procedure t () as
+begin
+    dbms_output.put_line('-- TO_DATETIME(2 arguments): intl_date_lang=ko_KR');
+    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF'));
+    dbms_output.put_line('-- TO_DATETIME(3 arguments): intl_date_lang=ko_KR');
+    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF', 'en_US'));
+    dbms_output.put_line(TO_DATETIME('01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF', 'ko_KR'));
+end;
+
+call t();
+
+set system parameters 'intl_date_lang=en_US';
+
 drop procedure t;
+
+-- CBRD-25302
+prepare st from 'select to_datetime(?, ?, ?) from dual';
+execute st using '01/11/1999 6:41:53.733', 'MM/DD/YYYY HH:MI:SS.FF', 'en_US';
+drop prepare st;
 
 --+ server-message off
