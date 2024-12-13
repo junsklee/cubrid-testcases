@@ -57,7 +57,12 @@ set system parameters 'intl_date_lang=en_US';
 drop procedure t;
 
 -- CBRD-25302
+
 prepare st from 'select TO_TIMESTAMP(?, ?, ?) from dual';
+
+--bug: currently cci prints seconds with extra decimal '.0'
+--once this issue gets resolved, the cci answer file and the evaluate below should be deleted
+evaluate 'bug: cci answer prints floating point as SS value for timestamp';
 execute st using '01/11/1999 18:41:53', 'MM/DD/YYYY HH24:MI:SS', 'en_US';
 drop prepare st;
 
