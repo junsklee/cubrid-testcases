@@ -17,7 +17,7 @@ CREATE TABLE sales_tbl
 INSERT INTO sales_tbl VALUES (201, 'George', 1, 450);
 INSERT INTO sales_tbl VALUES (202, 'Alice', 1, 550);
 
-evaluate 'Test Case 1: Using ROUND function in GROUP BY with WITH ROLLUP';
+evaluate 'Test Case 1: Using ROUND function and NO SP execution in GROUP BY with WITH ROLLUP';
 SELECT ROUND(dept_no), name, AVG(sales_amount)
 FROM sales_tbl
 WHERE sales_amount > 100
