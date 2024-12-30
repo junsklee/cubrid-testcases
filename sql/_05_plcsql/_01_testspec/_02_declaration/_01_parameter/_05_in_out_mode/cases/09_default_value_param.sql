@@ -279,6 +279,23 @@ drop procedure test_proc5;
 drop procedure test_proc6;
 
 -- CBRD-25573
+evaluate 'Nested calling of a process owned by another user (dba -> public)';
+create or replace procedure public.test_proc7(a int := 1, b int := 9) as
+begin
+    DBMS_OUTPUT.put_line('proc7 params: ' || a || ', ' || b);
+end;
+
+create or replace procedure test_proc8() as
+begin
+    public.test_proc7();
+end;
+
+call test_proc8();
+
+drop procedure test_proc7;
+drop procedure test_proc8;
+
+-- CBRD-25573
 evaluate 'Chaining procedures with default parameters';
 create or replace procedure proc_a(a int := 5) as
 begin
@@ -322,6 +339,5 @@ call proc_y();
 
 drop procedure proc_x;
 drop procedure proc_y;
-
 
 --+ server-message off
