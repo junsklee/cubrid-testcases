@@ -272,10 +272,11 @@ begin
     test_proc5();
 end;
 
--- error call (process shhould not have been created)
+-- error call (process should not have been created)
 call test_proc6();
 
 drop procedure test_proc5;
+-- error drop (process dba.test_proc6 should not exist)
 drop procedure test_proc6;
 
 -- CBRD-25573
@@ -292,7 +293,7 @@ end;
 
 call test_proc8();
 
-drop procedure test_proc7;
+drop procedure public.test_proc7;
 drop procedure test_proc8;
 
 -- CBRD-25573
