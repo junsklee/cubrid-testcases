@@ -14,7 +14,7 @@ CALL demo_default_value ();
 drop procedure demo_default_value;
 
 create or replace procedure demo_default_value2 (
-        a varchar := 'a', 
+        a varchar := 'a',
         b varchar := 'b'
 ) as
 begin
@@ -34,7 +34,7 @@ drop procedure demo_default_value2;
 -- trailing arguments
 select 'trailing args' from dual;
 create or replace procedure demo_default_value3 (
-        a varchar, 
+        a varchar,
         b varchar := 'b'
 ) as
 begin
@@ -67,7 +67,7 @@ drop procedure demo_default_value7;
 -- null args
 select 'null args' from dual;
 create or replace procedure demo_default_value8 (
-        a varchar, 
+        a varchar,
         b varchar := NULL
 ) as
 begin
@@ -86,7 +86,7 @@ drop procedure demo_default_value8;
 -- Error 1) no trailing arguments
 select 'error test, no trailing args' from dual;
 create or replace procedure demo_default_value4 (
-        a varchar := 'a', 
+        a varchar := 'a',
         b varchar
 ) as
 begin
@@ -96,7 +96,7 @@ end;
 
 -- Not error (coercible)
 create or replace procedure demo_default_value5 (
-        a varchar, 
+        a varchar,
         b varchar := 1
 ) as
 begin
@@ -112,7 +112,7 @@ drop procedure demo_default_value5;
 -- Error) type incompatbile
 select 'error test, type incompatible' from dual;
 create or replace procedure demo_default_value6 (
-        a varchar, 
+        a varchar,
         b integer := 'a'
 ) as
 begin
@@ -185,7 +185,7 @@ end;
 -- error, before merge CBRD-25219
 select 'char default' from dual;
 create or replace procedure char_default (
-        a char(3) := 'a'
+        a char := 'a'
 ) as
 begin
     DBMS_OUTPUT.put_line('"' || a || '"');
@@ -197,7 +197,7 @@ call char_default();
 drop procedure char_default;
 
 
--- error, before merge CBRD-25435
+-- CBRD-25435
 create or replace procedure date_default (
         a date := '2024-06-25',
         b datetime := '2024-06-25 12:22:33',
