@@ -202,7 +202,7 @@ create or replace procedure date_default (
         a date := '2024-06-25',
         b datetime := '2024-06-25 12:22:33',
         c time := '09:32:46',
-        d timestamp := '11:37 am 02-13'
+        d timestamp := '11:37 am 2025-02-13'
 ) as
 begin
     DBMS_OUTPUT.put_line(a);
@@ -211,7 +211,7 @@ begin
     DBMS_OUTPUT.put_line(d);
 end;
 
-call date_default('2000-11-22', '2000-01-23 07:56:17', '01:23:45', '07:28 pm 09-30');
+call date_default('2000-11-22', '2000-01-23 07:56:17', '01:23:45', '07:28 pm 2025-09-30');
 call date_default();
 
 drop procedure date_default;
