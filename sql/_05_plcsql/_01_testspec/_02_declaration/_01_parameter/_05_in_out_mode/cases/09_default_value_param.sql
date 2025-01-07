@@ -94,6 +94,9 @@ begin
     DBMS_OUTPUT.put_line(b);
 end;
 
+--error drop
+drop procedure demo_default_value4;
+
 -- Not error (coercible)
 create or replace procedure demo_default_value5 (
         a varchar,
@@ -120,6 +123,8 @@ begin
     DBMS_OUTPUT.put_line(b);
 end;
 
+--error drop
+drop procedure demo_default_value6;
 
 -- Error) out param
 select 'error test, out can not used default value 1' from dual;
@@ -130,6 +135,8 @@ begin
     DBMS_OUTPUT.put_line(a);
 end;
 
+--error drop
+drop procedure demo_default_value7;
 
 -- Error) out param
 select 'error test, out can not used default value 2' from dual;
@@ -141,6 +148,8 @@ begin
     DBMS_OUTPUT.put_line(a);
 end;
 
+--error drop
+drop procedure demo_default_value8;
 
 -- Error) in out param
 select 'error test, "in out" can not used default value' from dual;
@@ -151,10 +160,11 @@ begin
     DBMS_OUTPUT.put_line(a);
 end;
 
+--error drop
+drop procedure demo_default_value9;
 
--- expression (error case)
--- It is a constraint. but it might be improved in the future
-select 'error test, function can not use in default clause 1' from dual;
+-- expression (SYSDATE_TIME: fixed in CBRD-25658)
+select 'Function (SYSDATETIME) can be used in default clause 1' from dual;
 create or replace procedure demo_default_value10 (
         a varchar := SYSDATETIME
 ) as
@@ -162,9 +172,10 @@ begin
     DBMS_OUTPUT.put_line(a);
 end;
 
+drop procedure demo_default_value10;
 
--- expression (error case)
-select 'error test, function can not use in default clause 2' from dual;
+-- expression (CURRENT_USER: fixed in CBRD-25658)
+select 'Function can be used in default clause 2' from dual;
 create or replace procedure demo_default_value11 (
         a varchar := CURRENT_USER
 ) as
@@ -172,8 +183,9 @@ begin
     DBMS_OUTPUT.put_line(a);
 end;
 
+drop procedure demo_default_value11;
 
--- default value is over 255 length
+-- error, default value is over 255 length
 select 'error test, data overflow' from dual;
 create or replace procedure demo_default_value12 (
         a in varchar:= 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
@@ -182,7 +194,10 @@ begin
     DBMS_OUTPUT.put_line(a);
 end;
 
--- error, before merge CBRD-25219
+--error drop
+drop procedure demo_default_value12;
+
+-- CBRD-25219
 select 'char default' from dual;
 create or replace procedure char_default (
         a char := 'a'
