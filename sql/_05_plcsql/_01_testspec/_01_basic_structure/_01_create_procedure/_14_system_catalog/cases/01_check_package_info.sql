@@ -32,7 +32,7 @@ end;
 call test_proc1();
 select sp_name, pkg_name, is_system_generated from _db_stored_procedure where is_system_generated=0 order by sp_name;
 -- no result, because test_proc1 does not need parameter
-select * from _db_stored_procedure_args where is_system_generated=0 order by sp_of;
+select * from _db_stored_procedure_args where is_system_generated=0 order by sp_of, default_value, is_optional, comment;
 
 
 create or replace procedure test_proc2(a int) as
