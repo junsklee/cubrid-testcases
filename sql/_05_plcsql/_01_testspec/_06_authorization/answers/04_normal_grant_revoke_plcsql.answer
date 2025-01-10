@@ -43,9 +43,9 @@ DBA     T1     VCLASS     view1     DBA     EXECUTE     NO
 
 ===================================================
 Grants for T1    
-GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON DBA.test1 TO T1     
-GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON DBA.view1 TO T1     
-GRANT EXECUTE ON PROCEDURE DBA.sp1 TO T1     
+GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON dba.test1 TO T1     
+GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON dba.view1 TO T1     
+GRANT EXECUTE ON PROCEDURE dba.sp1 TO T1     
 
 
 ===================================================
@@ -74,9 +74,9 @@ DBA     T1     VCLASS     view1     DBA     EXECUTE     NO
 
 ===================================================
 Grants for T1    
-GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON DBA.test1 TO T1     
-GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON DBA.view1 TO T1     
-GRANT EXECUTE ON PROCEDURE DBA.sp1 TO T1     
+GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON dba.test1 TO T1     
+GRANT ALTER, DELETE, EXECUTE, INDEX, INSERT, SELECT, UPDATE ON dba.view1 TO T1     
+GRANT EXECUTE ON PROCEDURE dba.sp1 TO T1     
 
 
 ===================================================
@@ -92,7 +92,7 @@ null
 
 ===================================================
 Grants for DBA    
-GRANT EXECUTE ON PROCEDURE T1.sp2 TO DBA     
+GRANT EXECUTE ON PROCEDURE t1.sp2 TO DBA     
 
 
 ===================================================
