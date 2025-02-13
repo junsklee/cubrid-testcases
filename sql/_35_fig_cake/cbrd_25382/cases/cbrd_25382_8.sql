@@ -107,6 +107,19 @@ select /*+ recompile no_use_hash use_hash(invalid) no_use_hash(invalid) */ count
 from t1 a, t2 b, t3 c
 where a.c1 = b.c1 and b.c2 = c.c2;
 
+evaluate 'TEST 16: Multiple invalid USE_HASH columns (3): USE_HASH hint should be ignored.';
+--@queryplan
+select /*+ recompile use_hash(unknown1, unknown2, unknown3) */ count (*)
+from t1 a, t2 b, t3 c
+where a.c1 = b.c1 and b.c2 = c.c2;
+
+evaluate 'TEST 17: Multiple invalid NO_USE_HASH columns (3): NO_USE_HASH hint should be ignored and USE_HASH hint for valid columns should be applied.';
+--@queryplan
+select /*+ recompile use_hash(a,b) no_use_hash(unknown1, unknown2, unknown3) */ count (*)
+from t1 a, t2 b, t3 c
+where a.c1 = b.c1 and b.c2 = c.c2;
+
 drop table t1;
 drop table t2;
 drop table t3;
+

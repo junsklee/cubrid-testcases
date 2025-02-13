@@ -422,6 +422,60 @@ nl-join (inner join)
 Query stmt:
 select /*+ NO_USE_HASH */ count(*) from t? a, t? b, t? c where a.c?=b.c? and b.c?=c.c?
 ===================================================
+    
+TEST 16: Multiple invalid USE_HASH columns (3): USE_HASH hint should be ignored.     
+
+===================================================
+count(*)    
+10     
+
+Query plan:
+nl-join (inner join)
+    edge:  term[?]
+    outer: nl-join (inner join)
+               edge:  term[?]
+               outer: sscan
+                          class: a node[?]
+                          cost:  ? card ?
+               inner: sscan
+                          class: b node[?]
+                          sargs: term[?]
+                          cost:  ? card ?
+               cost:  ? card ?
+    inner: sscan
+               class: c node[?]
+               sargs: term[?]
+               cost:  ? card ?
+    cost:  ? card ?
+Query stmt:
+select count(*) from t? a, t? b, t? c where a.c?=b.c? and b.c?=c.c?
+===================================================
+    
+TEST 17: Multiple invalid NO_USE_HASH columns (3): NO_USE_HASH hint should be ignored and USE_HASH hint for valid columns should be applied.     
+
+===================================================
+count(*)    
+10     
+
+Query plan:
+hash-join (inner join)
+    edge:  term[?]
+    outer: hash-join (inner join)
+               edge:  term[?]
+               outer: sscan
+                          class: c node[?]
+                          cost:  ? card ?
+               inner: sscan
+                          class: b node[?]
+                          cost:  ? card ?
+               cost:  ? card ?
+    inner: sscan
+               class: a node[?]
+               cost:  ? card ?
+    cost:  ? card ?
+Query stmt:
+select /*+ USE_HASH(a, b) */ count(*) from t? a, t? b, t? c where a.c?=b.c? and b.c?=c.c?
+===================================================
 0
 ===================================================
 0
