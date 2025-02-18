@@ -119,7 +119,20 @@ select /*+ recompile use_hash(a,b) no_use_hash(unknown1, unknown2, unknown3) */ 
 from t1 a, t2 b, t3 c
 where a.c1 = b.c1 and b.c2 = c.c2;
 
+evaluate 'TEST 18: Invalid USE_HASH column alongside USE_HASH: Cache hint(s) should not be applied.';
+--@queryplan
+select /*+ recompile use_hash(unknown) use_hash */ count (*)
+from t1 a, t2 b, t3 c
+where a.c1 = b.c1 and b.c2 = c.c2;
+
+evaluate 'TEST 19: Invalid NO_USE_HASH column alongside NO_USE_HASH: Cache hint(s) should not be applied.';
+--@queryplan
+select /*+ recompile no_use_hash(unknown) no_use_hash */ count (*)
+from t1 a, t2 b, t3 c
+where a.c1 = b.c1 and b.c2 = c.c2;
+
 drop table t1;
 drop table t2;
 drop table t3;
+
 
