@@ -1,0 +1,66 @@
+
+=== <Result of EVALUATE Command in Line 11> ===
+
+  Result              
+======================
+  '1 - COMMIT executed inside a loop'
+
+
+=== <Result of CALL Command in Line 31> ===
+
+  Result              
+======================
+  NULL                
+
+
+=== <Result of SELECT Command in Line 32> ===
+
+           id
+=============
+            1
+            2
+            3
+            4
+            5
+          999
+
+
+=== <Result of EVALUATE Command in Line 34> ===
+
+  Result              
+======================
+  '2 - COMMIT executed via EXECUTE IMMEDIATE inside a loop'
+
+
+=== <Result of CALL Command in Line 55> ===
+
+  Result              
+======================
+  NULL                
+
+
+=== <Result of SELECT Command in Line 56> ===
+
+           id
+=============
+            1
+            2
+            3
+            4
+            5
+          999
+
+
+=== <Result of EVALUATE Command in Line 58> ===
+
+  Result              
+======================
+  '3 - COMMIT executed within a recursive call'
+
+
+=== <Result of SELECT Command in Line 84> ===
+
+       foo(3)
+=============
+            3
+
